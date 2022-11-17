@@ -11,4 +11,8 @@ async function logout(success, fail) {
   await api.post(`/user/logout`).then(success).catch(fail);
 }
 
-export { login, logout };
+async function regist(user, success, fail) {
+  await api.post(`/user/join`, user, JSON.stringify(user)).then(success).catch(fail);
+}
+
+export { login, logout, regist };

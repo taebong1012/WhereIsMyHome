@@ -67,7 +67,7 @@ const routes = [
       {
         path: "regist",
         name: "userregist",
-        component: () => import("@/components/user/UserLogin.vue"),
+        component: () => import("@/components/user/UserRegist.vue"),
       },
       {
         path: "mypage/:uid",

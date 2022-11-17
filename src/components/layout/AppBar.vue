@@ -54,12 +54,12 @@
 
           <!-- 미로그인 시: Register 버튼 | 로그인 시: 마이페이지 버튼 -->
           <v-col v-if="$vuetify.breakpoint.smAndUp" cols="1" class="text-right">
-            <v-btn v-if="!isLogin" color="white" target="_black" to="/login" class="ml-3 text-capitalize">
+            <v-btn v-if="!isLogin" color="white" target="_black" to="/user/regist" class="ml-3 text-capitalize">
               <v-icon left>+</v-icon>
               REGIST
             </v-btn>
 
-            <v-btn v-else color="primary" target="_black" @click="_goMyPage" class="ml-3 text-capitalize">
+            <v-btn v-else color="primary" target="_black" to="/user/mypage/!!!!번호!!!" class="ml-3 text-capitalize">
               <v-icon left>mdi-logout</v-icon>
               MyPage
             </v-btn>
