@@ -1,48 +1,62 @@
 // import http from "@/util/http-common.js";
 
 // import userStore from "./user";
-import { getQnaList, getQnaOne } from "@/api/qna";
+import {getQnaList, getQnaOne, getQnaAnswerList} from "@/api/qna";
 
 
 const qnaStore = {
-  namespaced: true,
-  state: {
-    qnaList: [],
-    qnaObject: Object,
-  },
-
-  getters: {
-    getQnaListObserver(context) {
-      return context.qnaList;
-    },
-    getQnaObjectObserver(context){
-      return context.qnaObject;
-    }
-  },
-
-  actions: {
-    allQna({ commit }) {
-      getQnaList(({data})=>{
-        commit("SET_QNA_LIST", data);
-      })
+    namespaced: true,
+    state: {
+        qnaList: [],
+        qnaObject: Object,
+        qnaAnswerObject: Object,
     },
 
-    getQnaOne({commit}, uid){
-      getQnaOne(uid, ({data})=>{
-        commit("SET_QNA_OBJECT", data);
-      });
-    }
-  },
-
-  mutations: {
-    SET_QNA_LIST(state, payload) {
-      state.qnaList = payload;
+    getters: {
+        getQnaListObserver(context) {
+            return context.qnaList;
+        },
+        getQnaObjectObserver(context) {
+            return context.qnaObject;
+        },
+        getQnaAnswerObjectObserver(context) {
+            return context.qnaAnswerObject;
+        }
     },
 
-    SET_QNA_OBJECT(state, payload){
-      state.qnaObject= payload;
-    }
-  },
+    actions: {
+        allQna({commit}) {
+            getQnaList(({data}) => {
+                commit("SET_QNA_LIST", data);
+            })
+        },
+
+        getQnaOne({commit}, uid) {
+            getQnaOne(uid, ({data}) => {
+                commit("SET_QNA_OBJECT", data);
+            });
+        },
+
+        getQnaAnswerList({commit}, uid) {
+            getQnaAnswerList(uid, ({data}) => {
+                commit("SET_QNA_ANSWER_OBJECT", data);
+            })
+        }
+    },
+
+    mutations: {
+        SET_QNA_LIST(state, payload) {
+            state.qnaList = payload;
+        },
+
+        SET_QNA_OBJECT(state, payload) {
+            state.qnaObject = payload;
+        },
+
+        SET_QNA_ANSWER_OBJECT(state, payload) {
+            state.qnaAnswerObject = payload;
+        }
+    },
 };
 
 export default qnaStore;

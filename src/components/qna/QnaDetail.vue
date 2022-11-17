@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <qna-question :uid="uid"></qna-question>
-    <qna-answer></qna-answer>
+    <qna-answer :uid="uid"></qna-answer>
   </div>
 </template>
 
