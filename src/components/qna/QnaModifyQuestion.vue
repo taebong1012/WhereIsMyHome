@@ -40,6 +40,7 @@ export default {
   methods: {
     _modifyDone() {
       console.log("수정 완료 버튼 눌림");
+      alert("수정 완료!");
 
       this.$router.push({
         name: "qnadetail",
