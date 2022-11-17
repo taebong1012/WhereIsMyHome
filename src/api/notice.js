@@ -12,4 +12,9 @@ async function getNoticeOne(uid, success, fail) {
     await api.get(`/notice/${uid}`).then(success).catch(fail);
 }
 
-export {getNoticeList, getNoticeOne};
+async function createNotice(params, success, fail) {
+    api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    await api.post(`/notice`, JSON.stringify(params)).then(success).catch(fail);
+}
+
+export {getNoticeList, getNoticeOne, createNotice};

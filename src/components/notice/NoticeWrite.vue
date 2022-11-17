@@ -2,16 +2,16 @@
   <div id="app">
     <v-container>
       <v-row>
-        <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목: </v-col>
+        <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목:</v-col>
         <v-col cols="11">
-          <v-text-field label="제목 입력" type="text" flat dense solo outlined />
+          <v-text-field label="제목 입력" v-model="noticeObject.title" type="text" flat dense solo outlined/>
         </v-col>
       </v-row>
 
       <v-row>
-        <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용: </v-col>
+        <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용:</v-col>
         <v-col cols="11">
-          <v-textarea label="내용 입력" type="text" flat dense solo outlined />
+          <v-textarea label="내용 입력" v-model="noticeObject.content" type="text" flat dense solo outlined/>
         </v-col>
       </v-row>
 
@@ -29,11 +29,23 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "NoticeWrite",
+  data() {
+    return {
+      noticeObject: {
+        title: '',
+        content: '',
+      },
+    };
+  },
   methods: {
+    ...mapActions("noticeStore", ["createNotice"]),
     _registQuestion() {
-      console.log("글 등록버튼 눌림");
+      console.log(this.noticeObject);
+      this.createNotice(this.noticeObject);
     },
 
     _goList() {

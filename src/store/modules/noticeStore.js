@@ -1,4 +1,5 @@
-import {getNoticeList, getNoticeOne} from "@/api/notice";
+import router from "@/router";
+import {getNoticeList, getNoticeOne, createNotice} from "@/api/notice";
 
 const noticeStore = {
     namespaced: true,
@@ -26,11 +27,18 @@ const noticeStore = {
         },
         getNoticeOne({commit}, uid) {
             commit("SET_NOTICE_OBJECT", null);
-            getNoticeOne(uid,({data})=>{
-              console.log(data);
-              commit("SET_NOTICE_OBJECT", data);
+            getNoticeOne(uid, ({data}) => {
+                console.log(data);
+                commit("SET_NOTICE_OBJECT", data);
             },);
-
+        },
+        createNotice({commit}, params) {
+            console.log(JSON.stringify(params));
+            createNotice(params, ({data}) => {
+                router.push({
+                    name: "noticelist",
+                });
+            });
         }
     },
     mutations: {
