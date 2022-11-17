@@ -17,5 +17,9 @@ async function getQnaAnswerList(uid, success, fail) {
   await api.get(`/answer/${uid}`).then(success).catch(fail);
 }
 
+async function searchQnaList(word, success, fail) {
+  api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+  await api.get(`/question/tb/${word}`).then(success).catch(fail);
+}
 
-export { getQnaList, getQnaOne,getQnaAnswerList };
+export { getQnaList, getQnaOne,getQnaAnswerList,searchQnaList };

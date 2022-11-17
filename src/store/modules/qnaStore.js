@@ -1,7 +1,7 @@
 // import http from "@/util/http-common.js";
 
 // import userStore from "./user";
-import {getQnaList, getQnaOne, getQnaAnswerList} from "@/api/qna";
+import {getQnaList, getQnaOne, getQnaAnswerList,searchQnaList} from "@/api/qna";
 
 
 const qnaStore = {
@@ -45,6 +45,12 @@ const qnaStore = {
             getQnaAnswerList(uid, ({data}) => {
                 commit("SET_QNA_ANSWER_OBJECT", data);
             })
+        },
+        searchQna({commit}, word){
+            commit("SET_QNA_LIST", []);
+            searchQnaList(word, ({data})=>{
+                commit("SET_QNA_LIST", data);
+            });
         }
     },
 
