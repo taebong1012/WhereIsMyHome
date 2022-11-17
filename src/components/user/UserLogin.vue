@@ -21,7 +21,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "AppLogin",
+  name: "UserLogin",
   data() {
     return {
       id: "",
@@ -30,21 +30,21 @@ export default {
   },
 
   methods: {
-    ...mapActions("userStore", ["login"]),
+    ...mapActions("userStore", ["userLogin"]),
 
     _login() {
       const user = {
         id: this.id,
         pw: this.pw,
       };
-      if (this.login(user)) {
+      if (this.userLogin(user)) {
         this.$router.push({ name: "home" });
       }
     },
   },
 
   computed: {
-    ...mapGetters("userStore", ["getToken"]),
+    ...mapGetters("userStore", ["isLogin"]),
   },
 };
 </script>

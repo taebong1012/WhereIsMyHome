@@ -52,8 +52,21 @@
             </v-btn>
           </v-col>
 
+          <!-- 미로그인 시: Register 버튼 | 로그인 시: 마이페이지 버튼 -->
+          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="1" class="text-right">
+            <v-btn v-if="!isLogin" color="white" target="_black" to="/login" class="ml-3 text-capitalize">
+              <v-icon left>+</v-icon>
+              REGIST
+            </v-btn>
+
+            <v-btn v-else color="primary" target="_black" @click="_goMyPage" class="ml-3 text-capitalize">
+              <v-icon left>mdi-logout</v-icon>
+              MyPage
+            </v-btn>
+          </v-col>
+
           <v-col v-if="$vuetify.breakpoint.smAndUp" cols="2" class="text-right">
-            <v-btn v-if="getToken === ''" color="primary" target="_black" to="/login" class="ml-3 text-capitalize">
+            <v-btn v-if="!isLogin" color="primary" target="_black" to="/user" class="ml-3 text-capitalize">
               <v-icon left>mdi-login</v-icon>
               LOGIN
             </v-btn>
@@ -70,7 +83,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -100,12 +113,13 @@ export default {
     ],
   }),
   computed: {
-    ...mapGetters("userStore", ["getToken"]),
+    ...mapGetters("userStore", ["isLogin"]),
   },
   methods: {
-    ...mapMutations("userStore", ["SET_TOKEN"]),
+    ...mapActions("userStore", ["userLogout"]),
+
     _logout() {
-      this.SET_TOKEN("");
+      this.userLogout();
     },
   },
 };

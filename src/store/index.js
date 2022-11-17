@@ -3,9 +3,9 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import userStore from "../store/modules/user";
-import noticeStore from "../store/modules/notice";
-import qnaStore from "../store/modules/qna";
+import userStore from "../store/modules/userStore";
+import noticeStore from "../store/modules/noticeStore";
+import qnaStore from "../store/modules/qnaStore";
 import createPersistedState from "vuex-persistedstate";
 
 export default new Vuex.Store({

@@ -25,11 +25,11 @@ const routes = [
     name: "developer",
     component: () => import("@/views/AppDeveloper.vue"),
   },
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/AppLogin.vue"),
-  },
+  // {
+  //   path: "/login",
+  //   name: "login",
+  //   component: () => import("@/views/AppLogin.vue"),
+  // },
   {
     path: "/qna",
     name: "qna",
@@ -50,6 +50,29 @@ const routes = [
         path: "write",
         name: "qnawrite",
         component: () => import("@/components/qna/QnaWrite.vue"),
+      },
+    ],
+  },
+  {
+    path: "/user",
+    name: "user",
+    redirect: "/user/login",
+    component: () => import("@/views/AppUser.vue"),
+    children: [
+      {
+        path: "login",
+        name: "userlogin",
+        component: () => import("@/components/user/UserLogin.vue"),
+      },
+      {
+        path: "regist",
+        name: "userregist",
+        component: () => import("@/components/user/UserLogin.vue"),
+      },
+      {
+        path: "mypage/:uid",
+        name: "usermypage",
+        component: () => import("@/components/user/UserMypage.vue"),
       },
     ],
   },
