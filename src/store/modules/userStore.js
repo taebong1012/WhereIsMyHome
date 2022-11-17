@@ -44,15 +44,15 @@ const userStore = {
 
     // 로그아웃
     async userLogout({ commit }) {
-      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-      commit("SET_IS_LOGIN", false);
 
-      // await logout(({ data }) => {
-      //   if (data.msg === "success") {
-      //     commit("SET_IS_LOGIN", false);
-      //   }
-      // });
+
+      await logout(({ data }) => {
+        if (data.msg === "success") {
+          sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+          sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+          commit("SET_IS_LOGIN", false);
+        }
+      });
     },
 
     //회원가입
