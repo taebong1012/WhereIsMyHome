@@ -49,7 +49,7 @@ const routes = [
     {
         path: "/notice",
         name: "notice",
-        redirect: "/notice/detail",
+        redirect: "/notice/list",
         component: () => import("@/views/AppNotice.vue"),
         children: [
             {
