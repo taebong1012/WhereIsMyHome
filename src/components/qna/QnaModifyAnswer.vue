@@ -1,14 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="3" class="text-h4 font-weight-bold" align="center">[질문 수정 하기]</v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목: </v-col>
-      <v-col cols="11">
-        <v-text-field label="제목 입력" type="text" flat dense solo outlined :value="originTitle"></v-text-field>
-      </v-col>
+      <v-col cols="3" class="text-h4 font-weight-bold" align="center">[답변 수정 하기]</v-col>
     </v-row>
 
     <v-row>
@@ -36,7 +29,6 @@ export default {
   data() {
     return {
       uid: "11", //!!!!!!!!!!파라미터 값 넘기려고 그냥 임시로 숫자 넣어놨어요. 현재의 글번호가 넘어가야하는뎅!!!!!!!!!!!!
-      originTitle: "원래 글의 제목!", //임시 문자열
       originContent: "원래 글의 내용!", //임시 문자열
     };
   },

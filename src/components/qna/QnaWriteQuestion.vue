@@ -2,6 +2,10 @@
   <div id="app">
     <v-container>
       <v-row>
+        <v-col cols="3" class="text-h4 font-weight-bold" align="center">[질문 등록 하기]</v-col>
+      </v-row>
+
+      <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목: </v-col>
         <v-col cols="11">
           <v-text-field label="제목 입력" type="text" flat dense solo outlined />
@@ -34,6 +38,7 @@ export default {
   methods: {
     _registQuestion() {
       console.log("글 등록버튼 눌림");
+      this._goList();
     },
 
     _goList() {

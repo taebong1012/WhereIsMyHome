@@ -8,7 +8,20 @@
           <div class="pl-2 text-body-1">{{ a.udate }}</div>
         </div>
 
-        <div class="d-flex align-center"></div>
+        <!-- 삭제, 수정 버튼 -->
+        <div class="d-flex align-center">
+          <div>
+            <v-row>
+              <v-col class="flex-shrink-0" cols="auto">
+                <v-chip color="accent" @click="_deleteTest">삭제</v-chip>
+              </v-col>
+
+              <v-col class="flex-shrink-0" cols="auto">
+                <v-chip color="accent" @click="_goModify">수정</v-chip>
+              </v-col>
+            </v-row>
+          </div>
+        </div>
       </div>
       <v-alert class="text-h6 text-left" border="left" colored-border color="yellow">{{ a.body }}</v-alert>
     </div>
@@ -16,7 +29,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "QnaDetailAnswer",
@@ -30,8 +43,12 @@ export default {
     _deleteTest() {
       console.log("삭제버튼 클릭됨");
     },
-    _modifyTest() {
-      console.log("수정 클릭됨");
+    _goModify() {
+      console.log("답변 수정 클릭됨");
+
+      this.$router.push({
+        name: "qnamodifyanswer",
+      });
     },
   },
   computed: {
