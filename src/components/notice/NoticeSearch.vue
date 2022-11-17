@@ -32,8 +32,6 @@
         </div>
       </v-col>
     </v-row>
-
-    <notice-list></notice-list>
   </div>
 </template>
 

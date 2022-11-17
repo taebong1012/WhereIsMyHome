@@ -1,17 +1,28 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import {getNoticeList} from "@/api/notice";
 
-Vue.use(Vuex);
+const noticeStore = {
+    namespaced: true,
 
-const noticeStore = new Vuex.Store({
-  state: {
-    noticelist: [],
-  },
-  actions: {
-    ["all_notice"]: (noticeStore) => {
-      http.get("/");
+    state: {
+        noticelist: Object,
     },
-  },
-});
+    getters: {
+        getNoticeListObserver(context){
+            return context.noticelist;
+        },
+    },
+    actions: {
+        getNoticeList({commit}) {
+            getNoticeList(({data})=>{
+                commit("SET_NOTICE_LIST", data);
+            });
+        },
+    },
+    mutations: {
+        SET_NOTICE_LIST(state, payload){
+            state.noticelist = payload;
+        }
+    },
+};
 
 export default noticeStore;

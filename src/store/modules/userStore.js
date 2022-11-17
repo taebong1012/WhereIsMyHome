@@ -44,8 +44,6 @@ const userStore = {
 
     // 로그아웃
     async userLogout({ commit }) {
-
-
       await logout(({ data }) => {
         if (data.msg === "success") {
           sessionStorage.removeItem("access-token"); //저장된 토큰 없애기

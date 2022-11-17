@@ -21,6 +21,7 @@ export default {
     QnaQuestion,
     QnaAnswer,
   },
+
   created() {
     this.uid = this.$route.params.uid;
     console.log(this.uid);

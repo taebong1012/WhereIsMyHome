@@ -30,7 +30,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("userStore", ["userLogin"]),
+    ...mapActions("notice", ["userLogin"]),
 
     _login() {
       const user = {
