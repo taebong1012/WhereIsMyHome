@@ -44,14 +44,12 @@ export default {
     QnaSearch,
   },
   data() {
-    return {
-    };
+    return {};
   },
 
   methods: {
     ...mapActions("qnaStore", ["allQna"]),
     _allQna() {
-
       this.allQna();
     },
     _goDetail(uid) {
@@ -62,7 +60,7 @@ export default {
     },
     _goWrite() {
       this.$router.push({
-        name: "qnawrite",
+        name: "writeqna",
       });
     },
   },
@@ -70,7 +68,6 @@ export default {
     ...mapGetters("qnaStore", ["getQnaListObserver"]),
   },
   created() {
-
     this._allQna();
   },
 };

@@ -38,6 +38,8 @@ export default {
   methods: {
     _registQuestion() {
       console.log("글 등록버튼 눌림");
+      alert("질문 등록 완료!");
+
       this._goList();
     },
 

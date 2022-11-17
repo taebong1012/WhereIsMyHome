@@ -61,9 +61,14 @@ const routes = [
         component: () => import("@/components/qna/QnaDetail.vue"),
       },
       {
-        path: "qnawrite",
-        name: "qnawrite",
+        path: "writeqna",
+        name: "writeqna",
         component: () => import("@/components/qna/QnaWriteQuestion.vue"),
+      },
+      {
+        path: "writeanswer",
+        name: "writeanswer",
+        component: () => import("@/components/qna/QnaWriteAnswer.vue"),
       },
       {
         path: "modifyquestion",

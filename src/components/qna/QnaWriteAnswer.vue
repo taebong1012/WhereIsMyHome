@@ -6,13 +6,6 @@
       </v-row>
 
       <v-row>
-        <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목: </v-col>
-        <v-col cols="11">
-          <v-text-field label="제목 입력" type="text" flat dense solo outlined />
-        </v-col>
-      </v-row>
-
-      <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용: </v-col>
         <v-col cols="11">
           <v-textarea label="내용 입력" type="text" flat dense solo outlined />
@@ -25,7 +18,7 @@
         </v-col>
 
         <v-col class="flex-shrink-0" cols="auto">
-          <v-chip color="accent" @click="_registQuestion">글 등록</v-chip>
+          <v-chip color="accent" @click="_registAnswer">답변 등록</v-chip>
         </v-col>
       </v-row>
     </v-container>
@@ -35,10 +28,20 @@
 <script>
 export default {
   name: "QnaWrite",
+  data() {
+    return {
+      questionUID: "11", //!!!!현재 답변을 등록한 질문글의 uid를 임시로 넣어놨어요!!!!!!!!
+    };
+  },
   methods: {
-    _registQuestion() {
+    _registAnswer() {
       console.log("글 등록버튼 눌림");
-      this._goList();
+      alert("답변 등록 완료!");
+
+      this.$router.push({
+        name: "detail",
+        params: { uid: this.questionUID },
+      });
     },
 
     _goList() {
