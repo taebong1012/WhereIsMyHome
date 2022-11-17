@@ -1,6 +1,9 @@
 // import http from "@/util/http-common.js";
 
 // import userStore from "./user";
+import { getQnaList, getQnaOne } from "@/api/qna";
+
+
 const qnaStore = {
   namespaced: true,
   state: {
@@ -8,16 +11,16 @@ const qnaStore = {
   },
 
   getters: {
-    getQnaList(context) {
+    getQnaListObserver(context) {
       return context.qnaList;
     },
   },
 
   actions: {
     allQna({ commit }) {
-      // http.get("/question").then((response) => {
-      //   commit("SET_QNA_LIST", response.data);
-      // });
+      getQnaList(({data})=>{
+        commit("SET_QNA_LIST", data);
+      })
     },
   },
 

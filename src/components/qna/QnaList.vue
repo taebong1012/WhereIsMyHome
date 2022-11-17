@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in List" :key="item.uid" @click="_goDetail(item.uid)" align="center">
+          <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
             <td>{{ item.uid }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.user_name }}</td>
@@ -45,13 +45,13 @@ export default {
   },
   data() {
     return {
-      List: this.$store.state.questionList, //더미데이터 가져옴
     };
   },
 
   methods: {
     ...mapActions("qnaStore", ["allQna"]),
     _allQna() {
+
       this.allQna();
     },
     _goDetail(uid) {
@@ -67,9 +67,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("qnaStore", ["getQnaList"]),
+    ...mapGetters("qnaStore", ["getQnaListObserver"]),
   },
   created() {
+
     this._allQna();
   },
 };
