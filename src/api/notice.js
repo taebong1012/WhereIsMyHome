@@ -17,4 +17,9 @@ async function createNotice(params, success, fail) {
     await api.post(`/notice`, JSON.stringify(params)).then(success).catch(fail);
 }
 
-export {getNoticeList, getNoticeOne, createNotice};
+async function searchNotice(word, success, fail) {
+    api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    await api.get(`/notice/search/${word}`).then(success).catch(fail);
+}
+
+export {getNoticeList, getNoticeOne, createNotice, searchNotice};

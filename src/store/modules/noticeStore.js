@@ -1,5 +1,5 @@
 import router from "@/router";
-import {getNoticeList, getNoticeOne, createNotice} from "@/api/notice";
+import {getNoticeList, getNoticeOne, createNotice, searchNotice} from "@/api/notice";
 
 const noticeStore = {
     namespaced: true,
@@ -39,6 +39,12 @@ const noticeStore = {
                     name: "noticelist",
                 });
             });
+        },
+        searchNotice({commit}, word) {
+            commit("SET_NOTICE_LIST", []);
+            searchNotice(word, ({data}) => {
+                commit("SET_NOTICE_LIST", data);
+            },);
         }
     },
     mutations: {
