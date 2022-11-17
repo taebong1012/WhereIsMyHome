@@ -26,18 +26,22 @@ const qnaStore = {
 
     actions: {
         allQna({commit}) {
+            commit("SET_QNA_LIST", []);
             getQnaList(({data}) => {
                 commit("SET_QNA_LIST", data);
             })
         },
 
         getQnaOne({commit}, uid) {
+            commit("SET_QNA_OBJECT", null);
+
             getQnaOne(uid, ({data}) => {
                 commit("SET_QNA_OBJECT", data);
             });
         },
 
         getQnaAnswerList({commit}, uid) {
+            commit("SET_QNA_ANSWER_OBJECT", []);
             getQnaAnswerList(uid, ({data}) => {
                 commit("SET_QNA_ANSWER_OBJECT", data);
             })

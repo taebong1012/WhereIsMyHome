@@ -13,6 +13,7 @@ const noticeStore = {
     },
     actions: {
         getNoticeList({commit}) {
+            commit("SET_NOTICE_LIST", []);
             getNoticeList(({data})=>{
                 commit("SET_NOTICE_LIST", data);
             });
