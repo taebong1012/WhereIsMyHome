@@ -21,28 +21,28 @@
             </v-col>
 
             <v-col class="flex-shrink-0" cols="auto">
-              <v-chip color="accent" @click="_modifyTest">수정</v-chip>
+              <v-chip color="accent" @click="_goModify">수정</v-chip>
             </v-col>
           </v-row>
         </div>
       </div>
     </div>
 
-    <v-alert class="text-h6 text-left" border="left" colored-border color="accent">{{ getQnaObjectObserver.body }}</v-alert>
+    <v-alert class="text-h6 text-left" border="left" colored-border color="accent">{{
+      getQnaObjectObserver.body
+    }}</v-alert>
     <v-divider></v-divider>
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "QnaDetailQuestion",
   //임시데이터
   data() {
-    return {
-
-    };
+    return {};
   },
   props: ["uid"],
   methods: {
@@ -50,8 +50,11 @@ export default {
     _deleteTest() {
       console.log("삭제버튼 클릭됨");
     },
-    _modifyTest() {
+    _goModify() {
       console.log("수정 클릭됨");
+      this.$router.push({
+        name: "qnamodifyquestion",
+      });
     },
   },
   computed: {
