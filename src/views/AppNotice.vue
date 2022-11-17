@@ -2,8 +2,10 @@
   <div>
     <v-row>
       <v-col cols="12" lg="12" xl="8">
-        <notice-search></notice-search>
-        <notice-list></notice-list>
+        <div class="text-h3 font-weight-bold primary--text pt-4">
+          <h4>Notice</h4>
+        </div>
+        <router-view></router-view>
       </v-col>
     </v-row>
   </div>
@@ -17,7 +19,6 @@ export default {
   name: "AppNotice",
   components: {
     NoticeSearch,
-    NoticeList,
   },
 };
 </script>
