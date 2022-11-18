@@ -17,9 +17,14 @@ async function getQnaAnswerList(uid, success, fail) {
   await api.get(`/answer/${uid}`).then(success).catch(fail);
 }
 
+async function createQuestion(params, success, fail) {
+  api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+  await api.post(`/question`, JSON.stringify(params)).then(success).catch(fail);
+}
+
 async function searchQnaList(word, success, fail) {
   api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
   await api.get(`/question/tb/${word}`).then(success).catch(fail);
 }
 
-export { getQnaList, getQnaOne,getQnaAnswerList,searchQnaList };
+export { getQnaList, getQnaOne, getQnaAnswerList, createQuestion, searchQnaList };

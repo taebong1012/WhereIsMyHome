@@ -8,14 +8,14 @@
       <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목: </v-col>
         <v-col cols="11">
-          <v-text-field label="제목 입력" type="text" flat dense solo outlined />
+          <v-text-field label="제목 입력" v-model="questionObject.title" type="text" flat dense solo outlined />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용: </v-col>
         <v-col cols="11">
-          <v-textarea label="내용 입력" type="text" flat dense solo outlined />
+          <v-textarea label="내용 입력" v-model="questionObject.content" type="text" flat dense solo outlined />
         </v-col>
       </v-row>
 
@@ -33,15 +33,25 @@
 </template>
 
 <script>
-// import { mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "QnaWrite",
+  data() {
+    return {
+      questionObject: {
+        title: "",
+        content: "",
+      },
+    };
+  },
   methods: {
+    ...mapActions("qnaStore", ["createQuestion"]),
     _registQuestion() {
       console.log("글 등록버튼 눌림");
-      alert("질문 등록 완료!");
+      this.createQuestion(this.questionObject);
 
+      alert("질문 등록 완료!");
       this._goList();
     },
 
