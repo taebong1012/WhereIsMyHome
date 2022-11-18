@@ -79,12 +79,18 @@ const routes = [
   {
     path: "/apartment",
     name: "apartment",
+    redirect: "/apartment/searchResult",
     component: () => import("@/views/AppApartment.vue"),
     children: [
       {
-        path: "/searchResult",
+        path: "searchResult",
         name: "apartmentsearchresult",
         component: () => import("@/components/apartment/ApartmentSearchResult.vue"),
+      },
+      {
+        path: "searchResultList",
+        name: "apartmentsearchresultlist",
+        component: () => import("@/components/apartment/ApartmentSearchResultList.vue"),
       },
     ],
   },

@@ -11,10 +11,6 @@
             <v-divider class="my-4"></v-divider>
 
             <v-row justify="center">
-              <apartment-search></apartment-search>
-            </v-row>
-
-            <v-row>
               <router-view></router-view>
             </v-row>
           </div>
