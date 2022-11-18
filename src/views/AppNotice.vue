@@ -5,6 +5,9 @@
         <div class="text-h3 font-weight-bold primary--text pt-4">
           <h4>Notice</h4>
         </div>
+
+        <v-divider class="my-4"></v-divider>
+
         <router-view></router-view>
       </v-col>
     </v-row>

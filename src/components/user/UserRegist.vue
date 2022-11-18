@@ -1,5 +1,5 @@
 <template>
-  <v-row class="d-flex justify-center align-center fill-height" style="min-height: 50vh">
+  <v-row class="d-flex justify-center align-center fill-height" style="min-height: 100vh">
     <v-col cols="12" md="6">
       <v-card class="py-6">
         <v-card-title class="d-flex justify-center">
@@ -10,6 +10,7 @@
           <v-text-field v-model="pw" label="PW" outlined type="password"></v-text-field>
           <v-text-field v-model="name" label="NAME" outlined type="text"></v-text-field>
           <v-text-field v-model="email" label="EMAIL" outlined type="text"></v-text-field>
+
           <div class="text-right">
             <v-btn color="primary" @click="_regist"> Regist </v-btn>
           </div>

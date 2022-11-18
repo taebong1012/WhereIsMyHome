@@ -128,7 +128,20 @@ const routes = [
   {
     path: "/interest",
     name: "interest",
+    redirect: "/interest/beforeclick",
     component: () => import("@/views/AppInterest.vue"),
+    children: [
+      {
+        path: "beforeclick",
+        name: "beforeclick",
+        component: () => import("@/components/interest/InterestBeforeClick.vue"),
+      },
+      {
+        path: "interestdetail",
+        name: "interestdetail",
+        component: () => import("@/components/interest/InterestDetail.vue"),
+      },
+    ],
   },
 ];
 

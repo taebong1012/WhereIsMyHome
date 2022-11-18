@@ -2,7 +2,7 @@
   <div>
     <v-card absolute app color="primary" dark flat>
       <v-container>
-        <v-row align="start">
+        <!-- <v-row align="start">
           <v-col cols="12" md="3">
             <h4 class="text-h5 font-weight-bold">Giraffe</h4>
             <p class="text-body-1">
@@ -55,7 +55,7 @@
               </v-col>
             </v-row>
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <div class="text-center mt-6">
           Copyright &copy;
