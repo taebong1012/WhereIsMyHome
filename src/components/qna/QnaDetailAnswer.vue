@@ -25,7 +25,6 @@
       </div>
       <v-alert class="text-h6 text-left" border="left" colored-border color="yellow">{{ a.body }}</v-alert>
     </div>
-    <v-btn color="accent" block large @click="_goAnswer">답변하기</v-btn>
   </div>
 </template>
 
@@ -49,13 +48,6 @@ export default {
 
       this.$router.push({
         name: "qnamodifyanswer",
-      });
-    },
-    _goAnswer() {
-      console.log("답변하기 클릭됨");
-
-      this.$router.push({
-        name: "writeanswer",
       });
     },
   },

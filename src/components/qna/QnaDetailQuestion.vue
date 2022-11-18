@@ -33,6 +33,8 @@
         getQnaObjectObserver.body
       }}</v-alert>
 
+      <v-btn color="accent" block large @click="_goAnswer">답변하기</v-btn>
+
       <v-divider></v-divider>
     </div>
   </div>
@@ -57,6 +59,13 @@ export default {
       console.log("수정 클릭됨");
       this.$router.push({
         name: "qnamodifyquestion",
+      });
+    },
+    _goAnswer() {
+      console.log("답변하기 클릭됨");
+
+      this.$router.push({
+        name: "writeanswer",
       });
     },
   },

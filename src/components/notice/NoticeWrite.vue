@@ -4,14 +4,14 @@
       <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목:</v-col>
         <v-col cols="11">
-          <v-text-field label="제목 입력" v-model="noticeObject.title" type="text" flat dense solo outlined/>
+          <v-text-field label="제목 입력" v-model="noticeObject.title" type="text" flat dense solo outlined />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용:</v-col>
         <v-col cols="11">
-          <v-textarea label="내용 입력" v-model="noticeObject.content" type="text" flat dense solo outlined/>
+          <v-textarea label="내용 입력" v-model="noticeObject.content" type="text" flat dense solo outlined />
         </v-col>
       </v-row>
 
@@ -21,7 +21,7 @@
         </v-col>
 
         <v-col class="flex-shrink-0" cols="auto">
-          <v-chip color="accent" @click="_registQuestion">글 등록</v-chip>
+          <v-chip color="accent" @click="_registNotice">글 등록</v-chip>
         </v-col>
       </v-row>
     </v-container>
@@ -29,21 +29,21 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "NoticeWrite",
   data() {
     return {
       noticeObject: {
-        title: '',
-        content: '',
+        title: "",
+        content: "",
       },
     };
   },
   methods: {
     ...mapActions("noticeStore", ["createNotice"]),
-    _registQuestion() {
+    _registNotice() {
       console.log(this.noticeObject);
       this.createNotice(this.noticeObject);
     },
