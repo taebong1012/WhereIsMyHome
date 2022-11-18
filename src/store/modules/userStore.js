@@ -1,88 +1,108 @@
 // import jwtDecode from "jwt-decode";
 import router from "@/router";
-import { login, logout, regist } from "@/api/user";
+import {login, logout, regist, mypage} from "@/api/user";
 
 const userStore = {
-  namespaced: true,
-  state: {
-    isLogin: false,
-    // isLoginError: false,
-    // userInfo: null,
-    // isValidToken: false,
-  },
-
-  getters: {
-    isLogin(state) {
-      return state.isLogin;
-    },
-  },
-
-  actions: {
-    //로그인
-    async userLogin({ commit }, user) {
-      await login(
-        user,
-        ({ data }) => {
-          if (data.msg === "success") {
-            let accessToken = data["access-token"];
-            let refreshToken = data["refresh-token"];
-
-            // console.log("--" + context);
-            commit("SET_IS_LOGIN", true);
-
-            sessionStorage.setItem("access-token", accessToken);
-            sessionStorage.setItem("refresh-token", refreshToken);
-          } else {
-            commit("SET_IS_LOGIN", false);
-          }
+    namespaced: true,
+    state: {
+        isLogin: false,
+        myinfo: {
+            uid: Number,
+            id: String,
+            pw: String,
+            name: String,
+            email: String,
+            sate: String,
         }
-        // (error) => {
-        //   console.log(error);
-        // }
-      );
+        // isLoginError: false,
+        // userInfo: null,
+        // isValidToken: false,
     },
 
-    // 로그아웃
-    async userLogout({ commit }) {
-      await logout(({ data }) => {
-        if (data.msg === "success") {
-          sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-          sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-          commit("SET_IS_LOGIN", false);
-        }
-      });
+    getters: {
+        isLogin(state) {
+            return state.isLogin;
+        },
+        myPageInfoObserver(state) {
+            return state.myinfo;
+        },
     },
 
-    //회원가입
-    async userRegist(user) {
-      //성공하면 msg가 success로 들어오는지?
-      await regist(
-        user,
+    actions: {
+        //로그인
+        async userLogin({commit}, user) {
+            await login(
+                user,
+                ({data}) => {
+                    if (data.msg === "success") {
+                        let accessToken = data["access-token"];
+                        let refreshToken = data["refresh-token"];
 
-        // //성공 -> 회원가입 성공 alert
-        () => {
-          alert("회원가입 성공");
-          router.push({
-            name: "userlogin",
-          });
+                        // console.log("--" + context);
+                        commit("SET_IS_LOGIN", true);
+
+                        sessionStorage.setItem("access-token", accessToken);
+                        sessionStorage.setItem("refresh-token", refreshToken);
+                    } else {
+                        commit("SET_IS_LOGIN", false);
+                    }
+                }
+                // (error) => {
+                //   console.log(error);
+                // }
+            );
         },
 
-        // //실패 -> 회원가입 실패 alert
-        () => {
-          alert("회원가입 실패");
-          router.push({
-            name: "userregist",
-          });
-        }
-      );
-    },
-  },
+        // 로그아웃
+        async userLogout({commit}) {
+            await logout(({data}) => {
+                if (data.msg === "success") {
+                    sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+                    sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+                    commit("SET_IS_LOGIN", false);
+                }
+            });
+        },
 
-  mutations: {
-    SET_IS_LOGIN(state, isLogin) {
-      state.isLogin = isLogin;
+        //회원가입
+        async userRegist(user) {
+            //성공하면 msg가 success로 들어오는지?
+            await regist(
+                user,
+
+                // //성공 -> 회원가입 성공 alert
+                () => {
+                    alert("회원가입 성공");
+                    router.push({
+                        name: "userlogin",
+                    });
+                },
+
+                // //실패 -> 회원가입 실패 alert
+                () => {
+                    alert("회원가입 실패");
+                    router.push({
+                        name: "userregist",
+                    });
+                }
+            );
+        },
+
+        async mypage({commit}) {
+            await mypage(({data}) => {
+                commit("SET_MY_INFO", data);
+            },);
+        }
     },
-  },
+
+    mutations: {
+        SET_IS_LOGIN(state, isLogin) {
+            state.isLogin = isLogin;
+        },
+        SET_MY_INFO(state, payload) {
+            state.myinfo = payload;
+        }
+    },
 };
 
 export default userStore;

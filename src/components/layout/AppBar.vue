@@ -59,7 +59,7 @@
               REGIST
             </v-btn>
 
-            <v-btn v-else color="primary" target="_black" to="/user/mypage/!!!!번호!!!" class="ml-3 text-capitalize">
+            <v-btn v-else color="primary" target="_black" :to="{name:'mypage'}" class="ml-3 text-capitalize">
               <v-icon left>mdi-logout</v-icon>
               MyPage
             </v-btn>
