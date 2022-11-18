@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="10">
-          <v-text-field label="검색어를 입력해주세요." type="text" v-model="word" flat dense solo outlined/>
+          <v-text-field label="검색어를 입력해주세요." type="text" v-model="word" flat dense solo outlined />
         </v-col>
         <v-col cols="2">
           <v-btn class="ma-0" color="accent" @click="_search" depressed large>SEARCH</v-btn>
@@ -14,21 +14,21 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "QnaSearch",
   data() {
     return {
       word: "",
-    }
+    };
   },
   methods: {
     ...mapActions("qnaStore", ["searchQna"]),
     _search() {
       this.searchQna(this.word);
     },
-  }
+  },
 };
 </script>
 
