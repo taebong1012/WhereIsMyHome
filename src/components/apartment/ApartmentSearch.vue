@@ -15,9 +15,6 @@
     <v-col>
       <v-btn class="ma-0" color="accent" @click="_search" depressed large>SEARCH</v-btn>
     </v-col>
-    <v-col>
-      <v-btn class="ma-0" color="pink" @click="_goInterest" depressed large>나의 관심 아파트</v-btn>
-    </v-col>
   </v-row>
 </template>
 

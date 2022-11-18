@@ -13,8 +13,15 @@
     <v-row>
       <v-col>지도 화면 입니다.</v-col>
       <v-col>
-        여기가 라우터뷰야 이 밑에 떠야해
-        <router-view></router-view>
+        <v-row>
+          <v-btn class="ma-0" color="pink" @click="_goInterest" depressed large>나의 관심 아파트</v-btn>
+        </v-row>
+
+        <v-row>
+          여기가 라우터뷰야 이 밑에 떠야해
+          <router-view></router-view>
+          근데 왜 안뜨지
+        </v-row>
       </v-col>
     </v-row>
   </div>
