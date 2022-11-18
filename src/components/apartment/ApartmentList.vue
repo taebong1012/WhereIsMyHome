@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "ApartmentSearchResultList",
+  name: "ApartmentList",
   data() {
     return {
       dumpApt: [

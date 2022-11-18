@@ -44,8 +44,7 @@ export default {
     NoticeSearch,
   },
   data() {
-    return {
-    };
+    return {};
   },
 
   methods: {

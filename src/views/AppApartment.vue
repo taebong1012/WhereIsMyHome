@@ -1,30 +1,34 @@
 <template>
   <div>
+    <div class="text-h3 font-weight-bold primary--text pt-4">
+      <h4>아파트 검색</h4>
+    </div>
+
+    <v-divider class="my-4"></v-divider>
+
     <v-row>
-      <v-col cols="12" lg="12" xl="8">
-        <div>
-          <div>
-            <div>
-              <h2 class="text-h4 font-weight-bold">아파트 검색</h2>
-            </div>
+      <apartment-search></apartment-search>
+    </v-row>
 
-            <v-divider class="my-4"></v-divider>
-
-            <v-row justify="center">
-              <router-view></router-view>
-            </v-row>
-          </div>
-        </div>
+    <v-row>
+      <v-col>지도 화면 입니다.</v-col>
+      <v-col>
+        여기가 라우터뷰야 이 밑에 떠야해
+        <router-view></router-view>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import ApartmentSearch from "@/components/apartment/ApartmentSearch.vue";
+
 export default {
   name: "AppApartment",
   components: {
-    // siderbar: () => import("@/components/details/sidebar"),
+    ApartmentSearch,
   },
 };
 </script>
+
+<style></style>

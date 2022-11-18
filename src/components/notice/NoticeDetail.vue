@@ -2,22 +2,21 @@
   <div class="app">
     <div v-if="getNoticeObjectObserver != null">
       {{ getNoticeObjectObserver.uid }}
-      <br>
+      <br />
       {{ getNoticeObjectObserver.title }}
-      <br>
+      <br />
       {{ getNoticeObjectObserver.content }}
-      <br>
+      <br />
       {{ getNoticeObjectObserver.sdate }}
-      <br>
+      <br />
       {{ getNoticeObjectObserver.udate }}
-      <br>
+      <br />
     </div>
   </div>
 </template>
 
 <script>
-
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "NoticeDetail",
