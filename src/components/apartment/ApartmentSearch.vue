@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row>
     <v-col>
       <!-- 시도 셀렉트박스 -->
       <v-select label="시/도 선택"></v-select>

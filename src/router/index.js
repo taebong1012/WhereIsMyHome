@@ -87,11 +87,6 @@ const routes = [
         name: "apartmentsearchresult",
         component: () => import("@/components/apartment/ApartmentSearchResult.vue"),
       },
-      {
-        path: "searchResultList",
-        name: "apartmentsearchresultlist",
-        component: () => import("@/components/apartment/ApartmentSearchResultList.vue"),
-      },
     ],
   },
   {

@@ -2,7 +2,7 @@
   <v-simple-table>
     <template v-slot:default>
       <tbody>
-        <tr v-for="item in dumpApt" :key="item.aptCode" @click="_goDetail(item.aptCode)" align="center">
+        <tr v-for="item in dumpApt" :key="item.aptCode" @click="_goDetail(item.aptCode)" align="left">
           <td>{{ item.name }}</td>
         </tr>
       </tbody>

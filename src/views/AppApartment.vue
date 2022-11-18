@@ -16,24 +16,15 @@
           </div>
         </div>
       </v-col>
-
-      <!--      <v-col>-->
-      <!--        <div>-->
-      <!--          <siderbar />-->
-      <!--        </div>-->
-      <!--      </v-col>-->
     </v-row>
   </div>
 </template>
 
 <script>
-import ApartmentSearch from "@/components/apartment/ApartmentSearch.vue";
-
 export default {
   name: "AppApartment",
   components: {
     // siderbar: () => import("@/components/details/sidebar"),
-    ApartmentSearch,
   },
 };
 </script>
