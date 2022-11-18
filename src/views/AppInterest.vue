@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div><h1>관심페이지!!!!!!</h1></div>
 </template>
 
 <script>
