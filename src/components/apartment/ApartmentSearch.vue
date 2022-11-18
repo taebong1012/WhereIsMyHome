@@ -25,9 +25,6 @@ export default {
     _search() {
       console.log("search 버튼 눌림");
     },
-    _goInterest() {
-      console.log("관심 아파트로 가는 버튼 눌림");
-    },
   },
 };
 </script>

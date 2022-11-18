@@ -79,16 +79,16 @@ const routes = [
   {
     path: "/apartment",
     name: "apartment",
-    // redirect: "/apartment/apartmentlist",
+    redirect: "/apartment/apartmentlist",
     component: () => import("@/views/AppApartment.vue"),
     children: [
       {
-        path: "/apartmentlist",
+        path: "apartmentlist",
         name: "apartmentlist",
         component: () => import("@/components/apartment/ApartmentList.vue"),
       },
       {
-        path: "/apartmentdetail",
+        path: "apartmentdetail",
         name: "apartmentdetail",
         component: () => import("@/components/apartment/ApartmentDetail.vue"),
       },
@@ -124,6 +124,11 @@ const routes = [
         component: () => import("@/components/user/MyPageInfo.vue"),
       },
     ],
+  },
+  {
+    path: "/interest",
+    name: "interest",
+    component: () => import("@/views/AppInterest.vue"),
   },
 ];
 
