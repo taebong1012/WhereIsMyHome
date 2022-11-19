@@ -1,27 +1,23 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="12" lg="12" xl="8">
-        <div>
-          <div>
-            <div class="my-2">
-              <h2 class="text-h4 font-weight-bold">MyPage</h2>
+    <v-row justify="center">
+      <v-col xl="8" align="left">
+        <v-row>
+          <v-col>
+            <div class="text-h3 font-weight-bold primary--text pt-4">
+              <h4>My Page</h4>
             </div>
-            <v-row>
-              <router-view></router-view>
-            </v-row>
-          </div>
-        </div>
-      </v-col>
+          </v-col>
+        </v-row>
 
-      <!--      <v-col>-->
-      <!--        <div>-->
-      <!--&lt;!&ndash;          <siderbar/>&ndash;&gt;-->
-      <!--        </div>-->
-      <!--      </v-col>-->
+        <v-row>
+          <v-col>
+            <router-view></router-view>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
   </div>
-
 </template>
 
 <script>

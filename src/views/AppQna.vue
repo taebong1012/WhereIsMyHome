@@ -2,11 +2,15 @@
   <div>
     <v-row>
       <v-col>
-        <div class="text-h3 font-weight-bold primary--text pt-4">
-          <h4>QnA</h4>
-        </div>
+        <v-row justify="center">
+          <v-col xl="8">
+            <div class="text-h3 font-weight-bold primary--text pt-4">
+              <h4>QnA</h4>
+            </div>
 
-        <v-divider class="my-4"></v-divider>
+            <!-- <v-divider class="my-4"></v-divider> -->
+          </v-col>
+        </v-row>
 
         <v-row>
           <v-col>
