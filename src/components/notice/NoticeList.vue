@@ -1,34 +1,38 @@
 <template>
   <div id="app">
-    <v-row>
-      <v-col cols="12" lg="12" xl="8">
+    <v-row justify="center">
+      <v-col align="center" align-self="center">
         <notice-search></notice-search>
       </v-col>
     </v-row>
 
     <!-- 리스트로 띄우기 -->
-    <v-simple-table>
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-center">글 번호</th>
-            <th class="text-center">제목</th>
-            <th class="text-center">작성자</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in getNoticeListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
-            <td>{{ item.uid }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.name }}</td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
+    <v-row justify="center" class="pt-0">
+      <v-col xl="8" align="center">
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-center">글 번호</th>
+                <th class="text-center">제목</th>
+                <th class="text-center">작성자</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in getNoticeListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
+                <td>{{ item.uid }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.name }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
+    </v-row>
 
-    <v-row>
-      <v-col class="flex-shrink-0" cols="auto">
-        <v-chip color="accent" @click="_goWrite">공지 등록</v-chip>
+    <v-row justify="center">
+      <v-col class="flex-shrink-0" cols="8" align="right" xl="8">
+        <v-btn v-if="isAdmin" class="ma-0" color="secondary" @click="_goWrite" depressed large>공지 등록</v-btn>
       </v-col>
     </v-row>
   </div>
@@ -44,7 +48,10 @@ export default {
     NoticeSearch,
   },
   data() {
-    return {};
+    return {
+      //관리자인지 확인하는 불리언! 관리자가 아니라면 버튼이 보이지 않게끔
+      isAdmin: true,
+    };
   },
 
   methods: {

@@ -1,11 +1,11 @@
 <template>
   <div class="app">
     <v-container>
-      <v-row>
-        <v-col cols="10">
-          <v-text-field label="검색어를 입력해주세요." type="text" v-model="word" flat dense solo outlined />
+      <v-row justify="center">
+        <v-col cols="5">
+          <v-text-field label="검색어를 입력해주세요." v-model="word" type="text" flat dense solo outlined />
         </v-col>
-        <v-col cols="2">
+        <v-col cols="1">
           <v-btn class="ma-0" color="accent" @click="_search" depressed large>SEARCH</v-btn>
         </v-col>
       </v-row>

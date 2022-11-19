@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" lg="12" xl="8">
+      <v-col>
         <div class="text-h3 font-weight-bold primary--text pt-4">
           <h4>Search Home</h4>
         </div>
@@ -11,7 +11,7 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col cols="center">
+      <v-col align="center">
         <apartment-search></apartment-search>
       </v-col>
     </v-row>
