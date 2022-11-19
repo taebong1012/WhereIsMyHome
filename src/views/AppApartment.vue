@@ -17,32 +17,36 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col
-        ><v-img
-          src="@/../images/tmpMapImg.png"
-          :aspect-ratio="16 / 9"
-          height="600px"
-          class="elevation-2"
-          style="border-radius: 16px"
-        ></v-img
-      ></v-col>
+      <v-col align="center" align-self="center">
+        <kakao-map></kakao-map>
+      </v-col>
       <v-col>
         <router-view></router-view>
       </v-col>
     </v-row>
   </div>
+
+  <!-- :aspect-ratio="16 / 9" -->
 </template>
 
 <script>
 import ApartmentSearch from "@/components/apartment/ApartmentSearch.vue";
+import KakaoMap from "@/components/apartment/KakaoMap.vue";
 
 export default {
   name: "AppApartment",
   components: {
     ApartmentSearch,
+    KakaoMap,
   },
   methods: {},
 };
 </script>
 
-<style></style>
+<style>
+/* #map {
+  height: "600px";
+  width: "1200px";
+  border-radius: "16px";
+} */
+</style>
