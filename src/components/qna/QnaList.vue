@@ -13,18 +13,18 @@
           <v-simple-table>
             <template v-slot:default>
               <thead>
-                <tr>
-                  <th class="text-center">글 번호</th>
-                  <th class="text-center">제목</th>
-                  <th class="text-center">작성자</th>
-                </tr>
+              <tr>
+                <th class="text-center">글 번호</th>
+                <th class="text-center">제목</th>
+                <th class="text-center">작성자</th>
+              </tr>
               </thead>
               <tbody>
-                <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
-                  <td>{{ item.uid }}</td>
-                  <td>{{ item.title }}</td>
-                  <td>{{ item.user_name }}</td>
-                </tr>
+              <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
+                <td>{{ item.uid }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.user_name }}</td>
+              </tr>
               </tbody>
             </template>
           </v-simple-table>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import QnaSearch from "@/components/qna/QnaSearch.vue";
 
 export default {
@@ -61,7 +61,7 @@ export default {
     _goDetail(uid) {
       this.$router.push({
         name: "qnadetail",
-        params: { uid: uid },
+        params: {uid: uid},
       });
     },
     _goWrite() {

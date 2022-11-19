@@ -24,7 +24,7 @@ export default {
 
   created() {
     this.uid = this.$route.params.uid;
-    console.log(this.uid);
+    console.log("질문글이예옹 " + this.uid);
   },
 };
 </script>

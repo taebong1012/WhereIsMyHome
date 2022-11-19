@@ -6,9 +6,9 @@
       </v-row>
 
       <v-row>
-        <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용: </v-col>
+        <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용:</v-col>
         <v-col cols="11">
-          <v-textarea label="내용 입력" type="text" flat dense solo outlined />
+          <v-textarea label="내용 입력" type="text" v-model="body" flat dense solo outlined/>
         </v-col>
       </v-row>
 
@@ -26,22 +26,40 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "QnaWrite",
   data() {
     return {
-      questionUID: "11", //!!!!현재 답변을 등록한 질문글의 uid를 임시로 넣어놨어요!!!!!!!!
+      questionUID: 0, //!!!!현재 답변을 등록한 질문글의 uid를 임시로 넣어놨어요!!!!!!!!
+      body: '',
     };
   },
-  methods: {
-    _registAnswer() {
-      console.log("글 등록버튼 눌림");
-      alert("답변 등록 완료!");
+  created() {
+    this.questionUID = this.$route.params.uid;
+    console.log("제발 맞게좀 나와라.. " + this.questionUID);
 
-      this.$router.push({
-        name: "detail",
-        params: { uid: this.questionUID },
-      });
+  },
+
+  methods: {
+    ...mapActions("qnaStore", ["createQuestionAnswer"]),
+
+    async _registAnswer() {
+      if (await this.createQuestionAnswer({
+        body: this.body,
+        question_uid: this.questionUID,
+      }) === true) {
+        alert("답변 등록 완료!");
+        console.log("router 이동");
+        this.$router.push(
+            {
+              name: "qnadetail", params: {
+                uid: this.questionUID,
+              }
+            }
+        )
+      }
     },
 
     _goList() {

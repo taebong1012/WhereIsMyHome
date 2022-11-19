@@ -30,8 +30,9 @@
       <v-row justify="center">
         <v-col xl="8">
           <v-alert class="text-h6 text-left" border="left" colored-border color="accent" min-height="200px">{{
-            getQnaObjectObserver.body
-          }}</v-alert>
+              getQnaObjectObserver.body
+            }}
+          </v-alert>
         </v-col>
       </v-row>
 
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "QnaDetailQuestion",
@@ -76,6 +77,9 @@ export default {
 
       this.$router.push({
         name: "writeanswer",
+        params: {
+          uid: this.uid,
+        },
       });
     },
   },
