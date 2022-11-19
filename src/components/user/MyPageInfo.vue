@@ -62,11 +62,8 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col cols="2">
-        <v-btn @click="_goWithdrawal" color="red" large style="color: white"> 회원 탈퇴 </v-btn>
-      </v-col>
-      <v-col cols="2">
-        <v-btn @click="_goEdit" color="accent" large> 정보 수정 </v-btn>
+      <v-col align="center">
+        <v-btn @click="_goEdit" color="accent" large> 정보 수정 / 탈퇴 </v-btn>
       </v-col>
     </v-row>
   </div>
@@ -87,14 +84,11 @@ export default {
         name: "interest",
       });
     },
-    _goWithdrawal() {
-      console.log("탈퇴 버튼 눌림");
-      this.$router.push({
-        name: "withdrawalConfirm",
-      });
-    },
     _goEdit() {
       console.log("정보 수정 버튼 눌림");
+      this.$router.push({
+        name: "userconfirm",
+      });
     },
   },
   computed: {

@@ -145,9 +145,14 @@ const routes = [
         component: () => import("@/components/user/MyPageInfo.vue"),
       },
       {
-        path: "withdrawalConfirm",
-        name: "withdrawalConfirm",
-        component: () => import("@/components/user/UserWithdrawalConfirm.vue"),
+        path: "userconfirm",
+        name: "userconfirm",
+        component: () => import("@/components/user/UserConfirm.vue"),
+      },
+      {
+        path: "usermodify",
+        name: "usermodify",
+        component: () => import("@/components/user/UserModify.vue"),
       },
     ],
   },
