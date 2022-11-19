@@ -9,24 +9,26 @@
     <!-- 리스트로 띄우기 -->
     <v-row justify="center" class="pt-0">
       <v-col xl="8" align="center">
-        <v-simple-table>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th class="text-center">글 번호</th>
-                <th class="text-center">제목</th>
-                <th class="text-center">작성자</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
-                <td>{{ item.uid }}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ item.user_name }}</td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+        <v-card elevation="2">
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-center">글 번호</th>
+                  <th class="text-center">제목</th>
+                  <th class="text-center">작성자</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
+                  <td>{{ item.uid }}</td>
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.user_name }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
       </v-col>
     </v-row>
 

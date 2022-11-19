@@ -1,39 +1,45 @@
 <template>
   <div class="app">
     <div v-if="getQnaObjectObserver != null">
-      <div class="text-h5 font-weight-bold primary--text pt-4">Q. {{ getQnaObjectObserver.title }}</div>
+      <v-row justify="center">
+        <v-col xl="8" align="left">
+          <div class="text-h4 font-weight-bold primary--text pt-4">Q. {{ getQnaObjectObserver.title }}</div>
+        </v-col>
+      </v-row>
 
-      <div class="d-flex align-center justify-space-between">
-        <div class="d-flex align-center">
-          <!-- 깃털 아이콘 -->
-          <v-avatar color="accent" size="25">
-            <v-icon dark>mdi-feather</v-icon>
-          </v-avatar>
+      <v-row justify="center">
+        <v-col xl="8" align="center">
+          <v-row>
+            <v-col align="left" align-self="center">
+              <!-- 깃털 아이콘 -->
+              <v-avatar color="accent" size="25">
+                <v-icon dark>mdi-feather</v-icon>
+              </v-avatar>
+              {{ getQnaObjectObserver.user_name }} | {{ getQnaObjectObserver.udate }}
+            </v-col>
 
-          <div class="pl-2 text-body-1">{{ getQnaObjectObserver.user_name }} | {{ getQnaObjectObserver.udate }}</div>
-        </div>
+            <!-- 삭제, 수정 버튼 -->
+            <v-col align="right">
+              <v-btn large color="accent" @click="_deleteTest">삭제</v-btn>
+              <v-btn large color="warning" @click="_goModify">수정</v-btn>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
 
-        <!-- 삭제, 수정 버튼 -->
-        <div class="d-flex align-center">
-          <div>
-            <v-row>
-              <v-col class="flex-shrink-0" cols="auto">
-                <v-chip color="accent" @click="_deleteTest">삭제</v-chip>
-              </v-col>
+      <v-row justify="center">
+        <v-col xl="8">
+          <v-alert class="text-h6 text-left" border="left" colored-border color="accent" min-height="200px">{{
+            getQnaObjectObserver.body
+          }}</v-alert>
+        </v-col>
+      </v-row>
 
-              <v-col class="flex-shrink-0" cols="auto">
-                <v-chip color="accent" @click="_goModify">수정</v-chip>
-              </v-col>
-            </v-row>
-          </div>
-        </div>
-      </div>
-
-      <v-alert class="text-h6 text-left" border="left" colored-border color="accent">{{
-        getQnaObjectObserver.body
-      }}</v-alert>
-
-      <v-btn color="accent" block large @click="_goAnswer">답변하기</v-btn>
+      <v-row justify="center">
+        <v-col xl="8">
+          <v-btn color="accent" block large @click="_goAnswer">답변하기</v-btn>
+        </v-col>
+      </v-row>
 
       <v-divider></v-divider>
     </div>
