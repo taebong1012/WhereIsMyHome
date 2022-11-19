@@ -56,6 +56,7 @@ const userStore = {
 
         // 로그아웃
         async userLogout({state, commit}) {
+            router.push({name: "home"});
             await logout(
                 state.uid,
                 ({data}) => {
