@@ -31,7 +31,7 @@
             <v-toolbar-title
                 class="font-weight-bold text-h6 primary--text"
                 style="cursor: pointer"
-                @click="$router.push('/').catch((err) => this.$router.go(this.$router.currentRoute))"
+                @click="_homeClick"
             >
               <v-icon color="primary" large>mdi-feather</v-icon>
               <span class="accent--text">H</span>
@@ -117,7 +117,9 @@ export default {
   },
   methods: {
     ...mapActions("userStore", ["userLogout"]),
-
+    _homeClick() {
+      this.$router.go(this.$router.currentRoute);
+    },
     _logout() {
       this.userLogout();
     },
