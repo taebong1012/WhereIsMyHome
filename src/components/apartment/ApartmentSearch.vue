@@ -78,9 +78,9 @@ export default {
 
   computed: {...mapGetters("apartmentStore", ["getSidoListObserver", "getGugunListObserver", "getDongListObserver"])},
   created() {
-    this.$store.commit("apartmentStore/SET_SIDO_LIST", []);
-    this.$store.commit("apartmentStore/SET_GUGUN_LIST", []);
-    this.$store.commit("apartmentStore/SET_DONG_LIST", []);
+    // this.$store.commit("apartmentStore/SET_SIDO_LIST", []);
+    // this.$store.commit("apartmentStore/SET_GUGUN_LIST", []);
+    // this.$store.commit("apartmentStore/SET_DONG_LIST", []);
 
     this.getSidoList();
   },

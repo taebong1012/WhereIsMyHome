@@ -40,7 +40,7 @@ export default {
     KakaoMap,
   },
   created() {
-    this.$store.commit("apartmentStore/SET_APT_LIST", []);
+    // this.$store.commit("apartmentStore/SET_APT_LIST", []);
 
   },
   methods: {},

@@ -17,7 +17,7 @@
           <v-row>
             <v-col class="text-h4 font-weight-bold primary--text pt-4" align="center" align-self="center">
               {{ getDealAptObjectObserver.apartmentName }}
-              <v-btn color="pink" outlined @click="interest = !interest">
+              <v-btn color="pink" outlined @click="_interest">
                 <!-- 관심 아파트 등록 여부 정할 버튼! -->
                 <v-icon v-if="interest">mdi-heart</v-icon>
                 <v-icon v-else>mdi-heart-outline</v-icon>
@@ -75,22 +75,27 @@ export default {
   data() {
     return {
       interest: false,
-
-      aptCode: "",
-
+      aptCode: 0,
     };
   },
-  created() {
+  async created() {
     this.no = this.$route.params.no;
-    console.log("디테일로 파람 잘 넘어왔나?: " + this.no);
+    this.aptCode = this.$route.params.aptCode;
     this.getDealAptDetail(this.no);
-    // 현재 아파트가 관심목록에 추가되어있다면 intetest를 true로, 아니라면 false로.
+    console.log("created : " + this.aptCode);
+
+    if (await this.isExist(this.aptCode) === true) {
+      this.interest = true;
+    } else {
+      this.interest = false;
+    }
   },
   computed: {
     ...mapGetters("apartmentStore", ["getDealAptObjectObserver"]),
   },
   methods: {
     ...mapActions("apartmentStore", ["getDealAptDetail"]),
+    ...mapActions("interestStore", ["createInterest", "deleteInterest", "isExist"]),
     _goInterest() {
       this.$router.push({
         name: "interest",
@@ -98,6 +103,17 @@ export default {
     },
     _goBack() {
       this.$router.go(-1);
+    },
+    _interest() {
+      if (!this.interest) {
+        if (this.createInterest(this.aptCode)) {
+          this.interest = !this.interest;
+        }
+      } else {
+        if (this.deleteInterest(this.aptCode)) {
+          this.interest = !this.interest;
+        }
+      }
     },
   },
 };
