@@ -5,16 +5,16 @@
     </v-row>
 
     <v-row>
-      <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목: </v-col>
+      <v-col cols="1" class="text-h5 font-weight-bold" align="center">제목:</v-col>
       <v-col cols="11">
-        <v-text-field label="제목 입력" type="text" flat dense solo outlined :value="originTitle"></v-text-field>
+        <v-text-field label="제목 입력" type="text" flat dense solo outlined v-model="object.title"></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용: </v-col>
+      <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용:</v-col>
       <v-col cols="11">
-        <v-textarea label="내용 입력" type="text" flat dense solo outlined :value="originContent"></v-textarea>
+        <v-textarea label="내용 입력" type="text" flat dense solo outlined v-model="object.body"></v-textarea>
       </v-col>
     </v-row>
 
@@ -31,23 +31,36 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: "QnaModifyQuestion",
   data() {
     return {
-      uid: "11", //!!!!!!!!!!파라미터 값 넘기려고 그냥 임시로 숫자 넣어놨어요. 현재의 글번호가 넘어가야하는뎅!!!!!!!!!!!!
-      originTitle: "원래 글의 제목!", //임시 문자열
-      originContent: "원래 글의 내용!", //임시 문자열
+      object: {
+        uid: 0,
+        title: "",
+        body: "",
+      }
     };
   },
+
+  async created() {
+    this.object.uid = this.$route.params.uid;
+    await this.showQnaOne(this.object.uid).then((data) => {
+      this.object = data;
+    });
+  },
   methods: {
-    _modifyDone() {
-      console.log("수정 완료 버튼 눌림");
+    ...mapActions("qnaStore", ["showQnaOne", "updateQuestion"]),
+
+    async _modifyDone() {
+      await this.updateQuestion(this.object);
       alert("수정 완료!");
 
-      this.$router.push({
+      await this.$router.push({
         name: "qnadetail",
-        params: { uid: this.uid }, //!!!!!!!!!!파라미터 값 넘기려고 그냥 임시로 숫자 넣어놨어요 현재의 글번호가 넘어가야하는뎅!!!!!!!!!!!!
+        params: {uid: this.object.uid}, //!!!!!!!!!!파라미터 값 넘기려고 그냥 임시로 숫자 넣어놨어요 현재의 글번호가 넘어가야하는뎅!!!!!!!!!!!!
       });
     },
 

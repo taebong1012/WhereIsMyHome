@@ -2,7 +2,15 @@
 
 // import userStore from "./user";
 import router from "@/router";
-import {getQnaList, getQnaOne, getQnaAnswerList, createQuestion, searchQnaList, createQuestionAnswer} from "@/api/qna";
+import {
+    getQnaList,
+    getQnaOne,
+    getQnaAnswerList,
+    createQuestion,
+    searchQnaList,
+    createQuestionAnswer,
+    updateQuestion
+} from "@/api/qna";
 
 const qnaStore = {
     namespaced: true,
@@ -42,6 +50,44 @@ const qnaStore = {
                     });
             });
 
+        },
+
+        async showQnaOne({commit}, uid) {
+            let object = null;
+            await getQnaOne(uid, ({data}) => {
+                object = data;
+            }, async (error) => {
+                if (error.response.status === 401) {
+                    await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+                }
+                await getQnaOne(uid,
+                    ({data}) => {
+                        object = data;
+                    },
+                    () => {
+                        alert("로그인이 만료되었습니다.");
+                        router.push({name: 'login'});
+                    });
+            });
+            return object;
+        },
+
+        updateQuestion({commit}, params) {
+            updateQuestion(params, ({data}) => {
+                console.log("성공하긴했어");
+            }, async (error) => {
+                if (error.response.status === 401) {
+                    await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+                }
+                updateQuestion(params,
+                    ({data}) => {
+                        commit("SET_QNA_OBJECT", data);
+                    },
+                    () => {
+                        alert("로그인이 만료되었습니다.");
+                        router.push({name: 'login'});
+                    });
+            });
         },
 
         getQnaOne({commit}, uid) {
