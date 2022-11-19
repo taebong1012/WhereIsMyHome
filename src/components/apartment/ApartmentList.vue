@@ -15,10 +15,10 @@
       <v-col>
         <v-card class="mx-auto">
           <v-list subheader style="height: 532px; overflow-y: auto">
-            <v-list-item v-for="apt in dumpApt" :key="apt.aptCode">
+            <v-list-item v-for="apt in getAptListObserver" :key="apt.aptCode">
               <v-list-item-content @click="_goDetail(apt.aptCode)">
                 <v-list-item-title
-                  v-text="apt.name"
+                  v-text="apt.apartmentName"
                   class="text-h6 font-weight-bold primary--text pt-1"
                 ></v-list-item-title>
                 <v-list-item-subtitle
@@ -35,96 +35,13 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "ApartmentList",
   data() {
     return {
-      dumpApt: [
-        {
-          aptCode: 1,
-          name: "잠실주공",
-          dealAmout: "73,000",
-          area: "94.51",
-          floor: "9",
-        },
-        {
-          aptCode: 2,
-          name: "롯데캐슬시그니엘",
-          dealAmout: "930,000",
-          area: "14.21",
-          floor: "101",
-        },
-        {
-          aptCode: 3,
-          name: "한남나인원",
-          dealAmout: "24,000",
-          area: "42.53",
-          floor: "14",
-        },
-        {
-          aptCode: 4,
-          name: "유엔빌리지",
-          dealAmout: "90,000",
-          area: "13.54",
-          floor: "47",
-        },
-        {
-          aptCode: 5,
-          name: "잠실주공",
-          dealAmout: "20,000",
-          area: "35.46",
-          floor: "23",
-        },
-        {
-          aptCode: 6,
-          name: "롯데캐슬시그니엘",
-          dealAmout: "93,000",
-          area: "13.34",
-          floor: "12",
-        },
-        {
-          aptCode: 7,
-          name: "한남나인원",
-          dealAmout: "22,000",
-          area: "64.43",
-          floor: "9",
-        },
-        {
-          aptCode: 8,
-          name: "유엔빌리지",
-          dealAmout: "74,000",
-          area: "35.24",
-          floor: "34",
-        },
-        {
-          aptCode: 9,
-          name: "잠실주공",
-          dealAmout: "20,000",
-          area: "35.46",
-          floor: "23",
-        },
-        {
-          aptCode: 10,
-          name: "롯데캐슬시그니엘",
-          dealAmout: "93,000",
-          area: "13.34",
-          floor: "12",
-        },
-        {
-          aptCode: 11,
-          name: "한남나인원",
-          dealAmout: "22,000",
-          area: "64.43",
-          floor: "9",
-        },
-        {
-          aptCode: 12,
-          name: "유엔빌리지",
-          dealAmout: "74,000",
-          area: "35.24",
-          floor: "34",
-        },
-      ],
+
     };
   },
   methods: {
@@ -140,6 +57,9 @@ export default {
         name: "interest",
       });
     },
+  },
+  computed: {
+    ...mapGetters("apartmentStore", ["getAptListObserver"]),
   },
 };
 </script>
