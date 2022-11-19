@@ -1,18 +1,18 @@
 <template>
   <div>
     <v-navigation-drawer
-      v-if="!$vuetify.breakpoint.smAndUp"
-      v-model="drawer"
-      :clipped="$vuetify.breakpoint.smAndUp"
-      app
-      color="primary"
-      dark
+        v-if="!$vuetify.breakpoint.smAndUp"
+        v-model="drawer"
+        :clipped="$vuetify.breakpoint.smAndUp"
+        app
+        color="primary"
+        dark
     >
       <!-- 네비 -->
       <v-list color="primary" nav>
-        <v-list-item v-if="isLoginObserver" :to="{ name: 'login' }" target="_black"> LOGIN </v-list-item>
+        <v-list-item v-if="isLoginObserver" :to="{ name: 'userLogin' }" target="_black"> LOGIN</v-list-item>
 
-        <v-list-item v-else @click="_logout" target="_black"> LOGOUT </v-list-item>
+        <v-list-item v-else @click="_logout" target="_black"> LOGOUT</v-list-item>
 
         <v-list-item v-for="(item, i) in barItems" :key="i" :href="item.href" :target="item.target" :to="item.to" link>
           <v-list-item-content>
@@ -27,11 +27,11 @@
       <v-container :class="{ 'px-0': !$vuetify.breakpoint.mdAndUp }">
         <v-row :no-gutters="!$vuetify.breakpoint.smAndUp" align="center">
           <v-col class="d-flex align-start" cols="2">
-            <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" @click.stop="drawer = !drawer" />
+            <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" @click.stop="drawer = !drawer"/>
             <v-toolbar-title
-              class="font-weight-bold text-h6 primary--text"
-              style="cursor: pointer"
-              @click="$router.push('/')"
+                class="font-weight-bold text-h6 primary--text"
+                style="cursor: pointer"
+                @click="$router.push('/').catch((err) => this.$router.go(this.$router.currentRoute))"
             >
               <v-icon color="primary" large>mdi-feather</v-icon>
               <span class="accent--text">H</span>
@@ -41,14 +41,14 @@
 
           <v-col v-if="$vuetify.breakpoint.smAndUp" align="center">
             <v-btn
-              v-for="(item, i) in barItems"
-              :key="i"
-              :to="item.to"
-              class="text-capitalize"
-              exact
-              exact-active-class="accent--text"
-              text
-              >{{ item.title }}
+                v-for="(item, i) in barItems"
+                :key="i"
+                :to="item.to"
+                class="text-capitalize"
+                exact
+                exact-active-class="accent--text"
+                text
+            >{{ item.title }}
             </v-btn>
           </v-col>
 
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   data: () => ({
