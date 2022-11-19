@@ -1,4 +1,4 @@
-import {getSidoList, getGugunList, getDongList, getDealAptList} from "@/api/apartment";
+import {getSidoList, getGugunList, getDongList, getDealAptList, getDealAptDetail} from "@/api/apartment";
 import store from "@/store";
 import router from "@/router";
 
@@ -25,6 +25,9 @@ const apartmentStore = {
 
     },
     getters: {
+        getDealAptObjectObserver(state) {
+            return state.aptObject;
+        },
         getSidoListObserver(state) {
             return state.sidoList;
         },
@@ -84,6 +87,12 @@ const apartmentStore = {
                         });
                 });
         },
+
+        getDealAptDetail({commit}, no) {
+            getDealAptDetail(no, ({data}) => {
+                commit("SET_APT_OBJECT", data);
+            });
+        }
     },
 
     mutations: {
@@ -99,6 +108,10 @@ const apartmentStore = {
         SET_APT_LIST(state, payload) {
             state.aptList = payload;
         },
+
+        SET_APT_OBJECT(state, payload) {
+            state.aptObject = payload;
+        }
     },
 }
 

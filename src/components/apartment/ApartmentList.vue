@@ -15,8 +15,8 @@
       <v-col>
         <v-card class="mx-auto">
           <v-list subheader style="height: 532px; overflow-y: auto">
-            <v-list-item v-for="apt in getAptListObserver" :key="apt.aptCode">
-              <v-list-item-content @click="_goDetail(apt.aptCode)">
+            <v-list-item v-for="apt in getAptListObserver" :key="apt.no">
+              <v-list-item-content @click="_goDetail(apt.no)">
                 <v-list-item-title
                   v-text="apt.apartmentName"
                   class="text-h6 font-weight-bold primary--text pt-1"
@@ -44,12 +44,14 @@ export default {
 
     };
   },
+  created() {
+  },
   methods: {
-    _goDetail(aptCode) {
-      console.log("디테일버튼눌림, aptCode: " + aptCode);
+    _goDetail(no) {
+      console.log("디테일버튼눌림, aptCode: " + no);
       this.$router.push({
         name: "apartmentdetail",
-        params: { aptCode: aptCode },
+        params: { no: no },
       });
     },
     _goInterest() {

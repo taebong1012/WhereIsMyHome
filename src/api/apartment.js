@@ -22,4 +22,9 @@ async function getDealAptList(sidoName, gugunName, dongName, word, success, fail
     await api_header.get(`/aptdeal/${sidoName}/${gugunName}/${dongName}`).then(success).catch(fail);
 }
 
-export {getSidoList, getGugunList, getDongList, getDealAptList};
+async function getDealAptDetail(no, success, fail) {
+    api_header.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    await api_header.get(`/aptdeal/info/${no}`).then(success).catch(fail);
+}
+
+export {getSidoList, getGugunList, getDongList, getDealAptList, getDealAptDetail};
