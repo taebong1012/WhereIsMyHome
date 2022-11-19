@@ -55,6 +55,8 @@
             <v-col align="center" align-self="center" style="font-weight: bold"> 가입 날짜 </v-col>
             <v-col align="center" align-self="center"> {{ myPageInfoObserver.sdate }}</v-col>
           </v-row>
+
+          <v-row><v-col>ㅤ</v-col></v-row>
         </v-card>
       </v-col>
     </v-row>
@@ -87,6 +89,9 @@ export default {
     },
     _goWithdrawal() {
       console.log("탈퇴 버튼 눌림");
+      this.$router.push({
+        name: "withdrawalConfirm",
+      });
     },
     _goEdit() {
       console.log("정보 수정 버튼 눌림");
