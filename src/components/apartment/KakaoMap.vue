@@ -1,14 +1,12 @@
 <template>
   <div>
     <div id="map"></div>
-    <div class="button-group">
-      <v-btn @click="changeSize(0)">Hide</v-btn>
-      <v-btn @click="changeSize(400)">show</v-btn>
+    <!-- <div class="button-group">
       <v-btn @click="displayMarker(markerPositions1)">marker set 1</v-btn>
       <v-btn @click="displayMarker(markerPositions2)">marker set 2</v-btn>
       <v-btn @click="displayMarker([])">marker set 3 (empty)</v-btn>
       <v-btn @click="displayInfoWindow">infowindow</v-btn>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -42,7 +40,7 @@ export default {
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
-      script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=754556683f16e08f943f95db414b90bc";
+      script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0";
       document.head.appendChild(script);
     }
   },
@@ -112,7 +110,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #map {
-  width: 1000px;
+  width: 100%;
   height: 600px;
 }
 
