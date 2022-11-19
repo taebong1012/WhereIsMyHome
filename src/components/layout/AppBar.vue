@@ -10,7 +10,7 @@
     >
       <!-- 네비 -->
       <v-list color="primary" nav>
-        <v-list-item v-if="isLogin" :to="{ name: 'login' }" target="_black"> LOGIN </v-list-item>
+        <v-list-item v-if="isLoginObserver" :to="{ name: 'login' }" target="_black"> LOGIN </v-list-item>
 
         <v-list-item v-else @click="_logout" target="_black"> LOGOUT </v-list-item>
 
@@ -54,7 +54,7 @@
 
           <!-- 미로그인 시: Register 버튼 | 로그인 시: 마이페이지 버튼 -->
           <v-col v-if="$vuetify.breakpoint.smAndUp" cols="2" class="text-right">
-            <v-btn v-if="!isLogin" color="white" target="_black" to="/user/regist" class="ml-3 text-capitalize">
+            <v-btn v-if="!isLoginObserver" color="white" target="_black" to="/user/regist" class="ml-3 text-capitalize">
               <v-icon left>+</v-icon>
               REGIST
             </v-btn>
@@ -66,7 +66,7 @@
           </v-col>
 
           <v-col v-if="$vuetify.breakpoint.smAndUp" cols="2" class="text-right">
-            <v-btn v-if="!isLogin" color="primary" target="_black" to="/user" class="ml-3 text-capitalize">
+            <v-btn v-if="!isLoginObserver" color="primary" target="_black" to="/user" class="ml-3 text-capitalize">
               <v-icon left>mdi-login</v-icon>
               LOGIN
             </v-btn>
@@ -113,7 +113,7 @@ export default {
     ],
   }),
   computed: {
-    ...mapGetters("userStore", ["isLogin"]),
+    ...mapGetters("userStore", ["isLoginObserver"]),
   },
   methods: {
     ...mapActions("userStore", ["userLogout"]),

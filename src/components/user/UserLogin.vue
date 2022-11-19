@@ -44,7 +44,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters("userStore", ["isLogin"]),
+    ...mapGetters("userStore", ["isLoginObserver"]),
   },
 };
 </script>
