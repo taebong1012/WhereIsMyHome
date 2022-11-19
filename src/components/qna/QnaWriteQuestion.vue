@@ -15,7 +15,7 @@
       <v-row>
         <v-col cols="1" class="text-h5 font-weight-bold" align="center">내용: </v-col>
         <v-col cols="11">
-          <v-textarea label="내용 입력" v-model="questionObject.content" type="text" flat dense solo outlined />
+          <v-textarea label="내용 입력" v-model="questionObject.body" type="text" flat dense solo outlined />
         </v-col>
       </v-row>
 
@@ -41,7 +41,7 @@ export default {
     return {
       questionObject: {
         title: "",
-        content: "",
+        body: "",
       },
     };
   },

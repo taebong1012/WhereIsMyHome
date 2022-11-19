@@ -83,9 +83,9 @@ const qnaStore = {
             });
         },
 
-        createQuestion({commit}, params) {
+        async createQuestion({commit}, params) {
             console.log(JSON.stringify(params));
-            createQuestion(params, ({data}) => {
+            await createQuestion(params, ({data}) => {
                 router.push({
                     name: "qnalist",
                 });
@@ -93,7 +93,7 @@ const qnaStore = {
                 if (error.response.status === 401) {
                     await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
                 }
-                createQuestion(params,
+                await createQuestion(params,
                     ({data}) => {
                         router.push({
                             name: "qnalist",
