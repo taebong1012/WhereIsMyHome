@@ -20,8 +20,8 @@
 
             <!-- 삭제, 수정 버튼 -->
             <v-col align="right">
-              <v-btn large color="accent" @click="_deleteTest">삭제</v-btn>
-              <v-btn large color="warning" @click="_goModify">수정</v-btn>
+              <v-btn large color="warning" @click="_deleteTest">삭제</v-btn>
+              <v-btn large color="accent" @click="_goModify">수정</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -41,7 +41,11 @@
         </v-col>
       </v-row>
 
-      <v-divider></v-divider>
+      <v-row justify="center">
+        <v-col xl="8">
+          <v-divider class="my-1"></v-divider>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
