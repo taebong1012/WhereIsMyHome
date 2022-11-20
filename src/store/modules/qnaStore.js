@@ -11,7 +11,8 @@ import {
     createQuestionAnswer,
     updateQuestion,
     updateAnswer,
-    deleteQuestion
+    deleteQuestion,
+    deleteAnswer
 } from "@/api/qna";
 
 const qnaStore = {
@@ -213,16 +214,16 @@ const qnaStore = {
             });
         },
 
-        async deleteQuestion({commit}, answer_uid) {
+        async deleteQuestion({commit}, question_uid) {
             let status = false;
-            deleteQuestion(answer_uid, ({data}) => {
+            deleteQuestion(question_uid, ({data}) => {
                 status = true;
             }, async (error) => {
 
                 if (error.response.status === 401) {
                     await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
                 }
-                deleteQuestion(params,
+                deleteQuestion(question_uid,
                     ({data}) => {
                         // commit("SET_QNA_OBJECT", data);
                     },
@@ -232,7 +233,28 @@ const qnaStore = {
                     });
             });
             return status;
-        }
+        },
+
+        async deleteAnswer({commit}, answer_uid){
+            let status = false;
+            deleteAnswer(answer_uid, ({data}) => {
+                status = true;
+            }, async (error) => {
+
+                if (error.response.status === 401) {
+                    await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+                }
+                deleteAnswer(answer_uid,
+                    ({data}) => {
+                        // commit("SET_QNA_OBJECT", data);
+                    },
+                    () => {
+                        alert("로그인이 만료되었습니다.");
+                        router.push({name: 'login'});
+                    });
+            });
+            return status;
+        },
     },
 
     mutations: {

@@ -50,11 +50,15 @@ export default {
   },
 
   methods: {
-    ...mapActions("qnaStore", ["getQnaAnswerList"]),
+    ...mapActions("qnaStore", ["getQnaAnswerList", "deleteAnswer"]),
     ...mapActions("userStore", ["mypage"]),
 
     _deleteTest(answer_uid) {
-      console.log("삭제버튼 클릭됨11");
+      this.deleteAnswer(answer_uid).then(() => {
+        alert("답변을 삭제하였습니다.");
+        this.$router.go(this.$router.currentRoute);
+
+      })
 
     },
     _goModify(answer_uid, body) {

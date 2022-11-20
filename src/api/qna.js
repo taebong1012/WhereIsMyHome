@@ -42,9 +42,14 @@ async function createQuestionAnswer(params, success, fail) {
     await api.post(`/answer`, params).then(success).catch(fail);
 }
 
-async function deleteQuestion(answer_uid, success, fail) {
+async function deleteQuestion(question_uid, success, fail) {
     api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
-    await api.delete(`/question/${answer_uid}`).then(success).catch(fail);
+    await api.delete(`/question/${question_uid}`).then(success).catch(fail);
+}
+
+async function deleteAnswer(answer_uid, success, fail) {
+    api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    await api.delete(`/answer/${answer_uid}`).then(success).catch(fail);
 }
 
 export {
@@ -56,5 +61,6 @@ export {
     createQuestionAnswer,
     updateQuestion,
     updateAnswer,
-    deleteQuestion
+    deleteQuestion,
+    deleteAnswer
 };
