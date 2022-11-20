@@ -70,6 +70,9 @@ export default {
       console.log("수정 클릭됨");
       this.$router.push({
         name: "qnamodifyquestion",
+        params:{
+          uid: this.uid,
+        }
       });
     },
     _goAnswer() {
