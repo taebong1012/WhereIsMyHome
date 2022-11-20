@@ -2,7 +2,7 @@
   <div>
     <v-row justify="center">
       <v-col cols="6" align="center" align-self="center">
-        <v-btn class="ma-0" disabled depressed large style="width: 100%"> 뒤로가기</v-btn>
+        <v-btn class="ma-0" @click="_goBack" color="warning" depressed large style="width: 100%"> 뒤로가기</v-btn>
       </v-col>
       <v-col cols="6" align="center" align-self="center">
         <v-btn class="ma-0" color="pink" @click="_goInterest" depressed large style="color: white; width: 100%">
@@ -16,7 +16,7 @@
         <v-card class="mx-auto">
           <v-list subheader style="height: 532px; overflow-y: auto">
             <v-list-item v-for="apt in getAptListObserver" :key="apt.no">
-              <v-list-item-content @click="_goDetail(apt.apartmentName, apt.aptCode)">
+              <v-list-item-content @click="_goDetail(apt.no, apt.aptCode)">
                 <v-list-item-title
                   v-text="apt.apartmentName"
                   class="text-h6 font-weight-bold primary--text pt-1"
@@ -33,10 +33,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "ApartmentList",
+  name: "ApartmentListDeal",
   data() {
     return {};
   },
@@ -44,11 +44,14 @@ export default {
     console.log(this.getAptListObserver);
   },
   methods: {
-    _goDetail(apartmentName, aptCode) {
-      console.log("디테일버튼눌림, aptCode: " + aptCode);
+    _goBack() {
+      this.$router.go(-1);
+    },
+    _goDetail(no, aptCode) {
+      console.log("디테일버튼눌림, aptCode: " + no);
       this.$router.push({
         name: "apartmentdetail",
-        params: { apartmentName: apartmentName, aptCode: aptCode },
+        params: { no: no, aptCode: aptCode },
       });
     },
     _goInterest() {

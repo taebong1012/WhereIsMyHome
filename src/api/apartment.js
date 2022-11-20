@@ -18,7 +18,7 @@ async function getDongList(sidoName, gugunName, success, fail) {
 
 async function getDealAptList(sidoName, gugunName, dongName, word, success, fail) {
   api_header.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
-  await api_header.get(`/aptdeal/${sidoName}/${gugunName}/${dongName}`).then(success).catch(fail);
+  await api_header.get(`/aptdeal/houseinfo/${sidoName}/${gugunName}/${dongName}`).then(success).catch(fail);
 }
 
 async function getDealAptDetail(no, success, fail) {
@@ -26,4 +26,9 @@ async function getDealAptDetail(no, success, fail) {
   await api_header.get(`/aptdeal/info/${no}`).then(success).catch(fail);
 }
 
-export { getSidoList, getGugunList, getDongList, getDealAptList, getDealAptDetail };
+async function getAptListDetail(aptCode, success, fail) {
+  api_header.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+  await api_header.get(`/aptdeal/${aptCode}`).then(success).catch(fail);
+}
+
+export { getSidoList, getGugunList, getDongList, getDealAptList, getDealAptDetail, getAptListDetail };

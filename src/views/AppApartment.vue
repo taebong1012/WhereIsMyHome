@@ -41,7 +41,6 @@ export default {
   },
   created() {
     // this.$store.commit("apartmentStore/SET_APT_LIST", []);
-
   },
   methods: {},
 };

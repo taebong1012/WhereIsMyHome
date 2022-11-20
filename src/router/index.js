@@ -107,6 +107,11 @@ const routes = [
         name: "apartmentlist",
         component: () => import("@/components/apartment/ApartmentList.vue"),
       },
+      // {
+      //   path: "apartmentlistdeal",
+      //   name: "apartmentlistdeal",
+      //   component: () => import("@/components/apartment/ApartmentListDeal.vue"),
+      // },
       {
         path: "apartmentdetail",
         name: "apartmentdetail",

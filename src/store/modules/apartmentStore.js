@@ -1,4 +1,12 @@
-import { getSidoList, getGugunList, getDongList, getDealAptList, getDealAptDetail } from "@/api/apartment";
+import {
+  getSidoList,
+  getGugunList,
+  getDongList,
+  getDealAptList,
+  getDealAptDetail,
+  getAptListDetail,
+} from "@/api/apartment";
+
 import store from "@/store";
 import router from "@/router";
 
@@ -21,6 +29,7 @@ const apartmentStore = {
     },
 
     aptList: [],
+    aptListDetail: [],
   },
   getters: {
     getDealAptObjectObserver(state) {
@@ -40,6 +49,11 @@ const apartmentStore = {
 
     getAptListObserver(state) {
       return state.aptList;
+    },
+
+    //아파트코드를 기준을 그 아파트에 있는 매매정보 가져오기
+    getAptListDetailObserver(state) {
+      return state.aptListDetail;
     },
   },
   actions: {
@@ -95,6 +109,12 @@ const apartmentStore = {
         commit("SET_APT_OBJECT", data);
       });
     },
+
+    getAptListDetail({ commit }, aptCode) {
+      getAptListDetail(aptCode, ({ data }) => {
+        commit("SET_APT_LIST_DETAIL", data);
+      });
+    },
   },
 
   mutations: {
@@ -113,6 +133,10 @@ const apartmentStore = {
 
     SET_APT_OBJECT(state, payload) {
       state.aptObject = payload;
+    },
+
+    SET_APT_LIST_DETAIL(state, payload) {
+      state.aptListDetail = payload;
     },
   },
 };

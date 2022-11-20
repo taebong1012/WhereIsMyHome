@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div id="map"></div>
+    <v-card elevation="2">
+      <div id="map"></div>
+    </v-card>
     <!-- <div class="button-group">
       <v-btn @click="displayMarker(markerPositions1)">marker set 1</v-btn>
       <v-btn @click="displayMarker(markerPositions2)">marker set 2</v-btn>
