@@ -115,7 +115,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "UserModify",
@@ -136,7 +136,7 @@ export default {
     };
   },
   methods: {
-    // ...mapActions("userStore", ["mypage"]),
+    ...mapActions("userStore", ["userDelete", "userLogout"]),
     _doWithdrawal() {
       if (this.curpw === "") {
         alert("현재 비밀번호를 입력해주세요.");
@@ -146,7 +146,9 @@ export default {
 
           //logout 시키고
 
-          //++++++탈퇴 ㄱ
+          //찐으로 탈퇴 ㄱ
+          this.userDelete();
+          this.userLogout();
 
           this.$router.push({ name: "home" });
         } else {

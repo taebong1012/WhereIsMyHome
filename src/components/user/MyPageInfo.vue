@@ -62,7 +62,7 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col align="center">
+      <v-col align="right">
         <v-btn @click="_goEdit" color="accent" large> 정보 수정 / 탈퇴 </v-btn>
       </v-col>
     </v-row>
