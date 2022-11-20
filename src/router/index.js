@@ -177,14 +177,14 @@ const routes = [
         //해당 아파트 안에서 거래매물
         path: "interestspecific",
         name: "interestspecific",
-        component: () => import("@/components/interest/InterestListSpecific.vue"),
+        component: () => import("@/components/interest/InterestListDeal.vue"),
       },
-      {
-        //집의 거래금액, 층 수 ,평 수 나오는 곳
-        path: "interestdetail",
-        name: "interestdetail",
-        component: () => import("@/components/interest/InterestDetail.vue"),
-      },
+      // {
+      //   //집의 거래금액, 층 수 ,평 수 나오는 곳
+      //   path: "interestdetail",
+      //   name: "interestdetail",
+      //   component: () => import("@/components/interest/InterestDetail.vue"),
+      // },
     ],
   },
 ];

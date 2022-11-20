@@ -3,25 +3,22 @@
     <v-card elevation="2">
       <div id="map"></div>
     </v-card>
-    <!-- <div class="button-group">
+    <div class="button-group">
       <v-btn @click="displayMarker(markerPositions1)">marker set 1</v-btn>
       <v-btn @click="displayMarker(markerPositions2)">marker set 2</v-btn>
       <v-btn @click="displayMarker([])">marker set 3 (empty)</v-btn>
       <v-btn @click="displayInfoWindow">infowindow</v-btn>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "KakaoMap",
   data() {
     return {
-      markerPositions1: [
-        [33.452278, 126.567803],
-        [33.452671, 126.574792],
-        [33.451744, 126.572441],
-      ],
       markerPositions2: [
         [37.499590490909185, 127.0263723554437],
         [37.499427948430814, 127.02794423197847],
@@ -50,19 +47,13 @@ export default {
     initMap() {
       const container = document.getElementById("map");
       const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(37.501244643075495, 127.03961595111771),
         level: 5,
       };
 
       //지도 객체를 등록합니다.
       //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
       this.map = new kakao.maps.Map(container, options);
-    },
-    changeSize(size) {
-      const container = document.getElementById("map");
-      container.style.width = `${size}px`;
-      container.style.height = `${size}px`;
-      this.map.relayout();
     },
     displayMarker(markerPositions) {
       if (this.markers.length > 0) {
@@ -106,6 +97,23 @@ export default {
       this.map.setCenter(iwPosition);
     },
   },
+  computed: {
+    ...mapGetters("apartmentStore", ["getAptListObserver"]),
+  },
+  created() {
+    // this.markers = [];
+    // console.log(this.getAptListObserver);
+    // for (let i = 0; i < this.getAptListObserver.length; i++) {
+    //   console.log("lat: " + this.getAptListObserver[i].lat + "\nlng: " + this.getAptListObserver[i].lng);
+    //   let latlng = [this.getAptListObserver[i].lat, this.getAptListObserver[i].lng];
+    //   this.markers.push(latlng);
+    // }
+    // console.log("그냥 배열");
+    // console.log(this.markerPositions2);
+    // console.log("추가한 배열");
+    // console.log(this.markers);
+    // this.displayMarker(this.markerPositions2);
+  },
 };
 </script>
 
@@ -124,3 +132,5 @@ button {
   margin: 0 3px;
 }
 </style>
+
+this.getAptListObserver.array.forEach((item) => { console.log(item.apartmentName); });

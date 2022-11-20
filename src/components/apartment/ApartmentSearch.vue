@@ -72,7 +72,7 @@ export default {
 
     _search() {
       this.getDealAptList(this.region);
-
+      // this.$router.push({ name: "apartmentlist" });
       // console.log(this.region.sidoName + " " + this.region.gugunName + " " + this.region.dongName + " " + this.region.word)
     },
   },
