@@ -27,6 +27,11 @@ async function updateQuestion(params, success, fail) {
     await api.put(`/question`, JSON.stringify(params)).then(success).catch(fail);
 }
 
+async function updateAnswer(params, success, fail) {
+    api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    await api.put(`/answer`, JSON.stringify(params)).then(success).catch(fail);
+}
+
 async function searchQnaList(word, success, fail) {
     api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
     await api.get(`/question/tb/${word}`).then(success).catch(fail);
@@ -37,4 +42,13 @@ async function createQuestionAnswer(params, success, fail) {
     await api.post(`/answer`, params).then(success).catch(fail);
 }
 
-export {getQnaList, getQnaOne, getQnaAnswerList, createQuestion, searchQnaList, createQuestionAnswer, updateQuestion};
+export {
+    getQnaList,
+    getQnaOne,
+    getQnaAnswerList,
+    createQuestion,
+    searchQnaList,
+    createQuestionAnswer,
+    updateQuestion,
+    updateAnswer
+};

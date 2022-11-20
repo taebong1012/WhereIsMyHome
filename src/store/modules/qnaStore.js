@@ -9,7 +9,8 @@ import {
     createQuestion,
     searchQnaList,
     createQuestionAnswer,
-    updateQuestion
+    updateQuestion,
+    updateAnswer
 } from "@/api/qna";
 
 const qnaStore = {
@@ -81,7 +82,7 @@ const qnaStore = {
                 }
                 updateQuestion(params,
                     ({data}) => {
-                        commit("SET_QNA_OBJECT", data);
+                        // commit("SET_QNA_OBJECT", data);
                     },
                     () => {
                         alert("로그인이 만료되었습니다.");
@@ -191,6 +192,24 @@ const qnaStore = {
                         });
                 });
             return status;
+        },
+
+        async updateAnswer({commit}, params) {
+            updateAnswer(params, ({data}) => {
+                console.log("성공하긴했어");
+            }, async (error) => {
+                if (error.response.status === 401) {
+                    await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+                }
+                updateAnswer(params,
+                    ({data}) => {
+                        // commit("SET_QNA_OBJECT", data);
+                    },
+                    () => {
+                        alert("로그인이 만료되었습니다.");
+                        router.push({name: 'login'});
+                    });
+            });
         },
     },
 

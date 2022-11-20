@@ -17,8 +17,8 @@
 
             <!-- 삭제, 수정 버튼 -->
             <v-col align="right">
-              <v-btn large color="warning" @click="_deleteTest">삭제</v-btn>
-              <v-btn large color="accent" @click="_goModify">수정</v-btn>
+              <v-btn large color="warning" @click="_deleteTest(a.uid)">삭제</v-btn>
+              <v-btn large color="accent" @click="_goModify(a.uid, a.body)">수정</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "QnaDetailAnswer",
@@ -51,14 +51,19 @@ export default {
 
   methods: {
     ...mapActions("qnaStore", ["getQnaAnswerList"]),
-    _deleteTest() {
+    _deleteTest(answer_uid) {
       console.log("삭제버튼 클릭됨");
     },
-    _goModify() {
+    _goModify(answer_uid, body) {
       console.log("답변 수정 클릭됨");
 
       this.$router.push({
         name: "qnamodifyanswer",
+        params: {
+          answer_uid: answer_uid,
+          question_uid: this.uid,
+          body: body,
+        }
       });
     },
   },
