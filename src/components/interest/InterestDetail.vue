@@ -2,7 +2,15 @@
   <div>
     <v-row justify="center">
       <v-col align="center" align-self="center">
-        <v-card height="600px" width="100%" class="elevation-2">
+        <v-btn class="ma-0" color="accent" depressed large style="color: white; width: 100%">
+          해당 아파트의 다른 거래매물 보기
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row justify="center">
+      <v-col align="center" align-self="center">
+        <v-card height="530px" width="100%" class="elevation-2">
           <v-row>
             <v-col class="text-h4 font-weight-bold primary--text pt-4" align="center" align-self="center">
               {{ dumpApt.name }}

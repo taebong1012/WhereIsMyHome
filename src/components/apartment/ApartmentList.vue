@@ -18,13 +18,12 @@
             <v-list-item v-for="apt in getAptListObserver" :key="apt.no">
               <v-list-item-content @click="_goDetail(apt.no, apt.aptCode)">
                 <v-list-item-title
-                    v-text="apt.apartmentName"
-                    class="text-h6 font-weight-bold primary--text pt-1"
+                  v-text="apt.apartmentName"
+                  class="text-h6 font-weight-bold primary--text pt-1"
                 ></v-list-item-title>
                 <v-list-item-subtitle
-                >{{ apt.dealAmout }}만원 | {{ apt.area }}m^2 | {{ apt.floor }}층
-                </v-list-item-subtitle
-                >
+                  >{{ apt.dealAmout }}만원 | {{ apt.area }}m^2 | {{ apt.floor }}층
+                </v-list-item-subtitle>
                 <v-divider class="my-1"></v-divider>
               </v-list-item-content>
             </v-list-item>
@@ -36,7 +35,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ApartmentList",
@@ -44,13 +43,14 @@ export default {
     return {};
   },
   created() {
+    console.log(this.getAptListObserver);
   },
   methods: {
     _goDetail(no, aptCode) {
       console.log("디테일버튼눌림, aptCode: " + no);
       this.$router.push({
         name: "apartmentdetail",
-        params: {no: no, aptCode: aptCode},
+        params: { no: no, aptCode: aptCode },
       });
     },
     _goInterest() {
