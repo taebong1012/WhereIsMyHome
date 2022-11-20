@@ -10,7 +10,7 @@
     >
       <!-- 네비 -->
       <v-list color="primary" nav>
-        <v-list-item v-if="!isLoginObserver" :to="{ name: 'userLogin' }" target="_black"> LOGIN</v-list-item>
+        <v-list-item v-if="!isLoginObserver" :to="{ name: 'userlogin' }" target="_black"> LOGIN</v-list-item>
 
         <v-list-item v-else @click="_logout" target="_black"> LOGOUT</v-list-item>
 
