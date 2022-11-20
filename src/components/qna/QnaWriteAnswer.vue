@@ -52,13 +52,7 @@ export default {
       }) === true) {
         alert("답변 등록 완료!");
         console.log("router 이동");
-        this.$router.push(
-            {
-              name: "qnadetail", params: {
-                uid: this.questionUID,
-              }
-            }
-        )
+        this._goList();
       }
     },
 

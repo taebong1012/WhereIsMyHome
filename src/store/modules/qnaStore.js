@@ -10,7 +10,8 @@ import {
     searchQnaList,
     createQuestionAnswer,
     updateQuestion,
-    updateAnswer
+    updateAnswer,
+    deleteQuestion
 } from "@/api/qna";
 
 const qnaStore = {
@@ -211,6 +212,27 @@ const qnaStore = {
                     });
             });
         },
+
+        async deleteQuestion({commit}, answer_uid) {
+            let status = false;
+            deleteQuestion(answer_uid, ({data}) => {
+                status = true;
+            }, async (error) => {
+
+                if (error.response.status === 401) {
+                    await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+                }
+                deleteQuestion(params,
+                    ({data}) => {
+                        // commit("SET_QNA_OBJECT", data);
+                    },
+                    () => {
+                        alert("로그인이 만료되었습니다.");
+                        router.push({name: 'login'});
+                    });
+            });
+            return status;
+        }
     },
 
     mutations: {

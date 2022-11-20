@@ -20,8 +20,8 @@
 
             <!-- 삭제, 수정 버튼 -->
             <v-col
-              v-if="getQnaObjectObserver.user_uid === myPageInfoObserver.uid || myPageInfoObserver.id === 'admin'"
-              align="right"
+                v-if="getQnaObjectObserver.user_uid === myPageInfoObserver.uid || myPageInfoObserver.id === 'admin'"
+                align="right"
             >
               <v-btn large color="warning" @click="_deleteTest">삭제</v-btn>
               <v-btn large color="accent" @click="_goModify">수정</v-btn>
@@ -33,7 +33,7 @@
       <v-row justify="center">
         <v-col xl="8">
           <v-alert class="text-h6 text-left" border="left" colored-border color="accent" min-height="200px"
-            >{{ getQnaObjectObserver.body }}
+          >{{ getQnaObjectObserver.body }}
           </v-alert>
         </v-col>
       </v-row>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "QnaDetailQuestion",
@@ -64,11 +64,16 @@ export default {
   },
   props: ["uid"],
   methods: {
-    ...mapActions("qnaStore", ["getQnaOne"]),
+    ...mapActions("qnaStore", ["getQnaOne", "deleteQuestion"]),
     ...mapActions("userStore", ["mypage"]),
 
-    _deleteTest() {
-      console.log("삭제버튼 클릭됨");
+    async _deleteTest() {
+      this.deleteQuestion(this.uid).then(() => {
+        alert("질문이 삭제되었습니다.");
+        this.$router.push({
+          name: "qnalist",
+        });
+      });
     },
     _goModify() {
       console.log("수정 클릭됨");

@@ -42,6 +42,11 @@ async function createQuestionAnswer(params, success, fail) {
     await api.post(`/answer`, params).then(success).catch(fail);
 }
 
+async function deleteQuestion(answer_uid, success, fail) {
+    api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    await api.delete(`/question/${answer_uid}`).then(success).catch(fail);
+}
+
 export {
     getQnaList,
     getQnaOne,
@@ -50,5 +55,6 @@ export {
     searchQnaList,
     createQuestionAnswer,
     updateQuestion,
-    updateAnswer
+    updateAnswer,
+    deleteQuestion
 };

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "QnaDetailAnswer",
@@ -54,7 +54,8 @@ export default {
     ...mapActions("userStore", ["mypage"]),
 
     _deleteTest(answer_uid) {
-      console.log("삭제버튼 클릭됨");
+      console.log("삭제버튼 클릭됨11");
+
     },
     _goModify(answer_uid, body) {
       console.log("답변 수정 클릭됨");
