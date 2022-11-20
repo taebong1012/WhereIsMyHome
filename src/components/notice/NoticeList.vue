@@ -33,8 +33,10 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col class="flex-shrink-0" cols="8" align="right" xl="8">
-        <v-btn v-if="isAdmin" class="ma-0" color="secondary" @click="_goWrite" depressed large>공지 등록</v-btn>
+      <v-col class="flex-shrink-0" align="right" xl="8">
+        <v-btn v-if="myPageInfoObserver.id === 'admin'" class="ma-0" color="secondary" @click="_goWrite" depressed large
+          >공지 등록</v-btn
+        >
       </v-col>
     </v-row>
   </div>
@@ -58,6 +60,7 @@ export default {
 
   methods: {
     ...mapActions("noticeStore", ["getNoticeList"]),
+    ...mapActions("userStore", ["mypage"]),
 
     _goDetail(uid) {
       this.$router.push({
@@ -73,9 +76,11 @@ export default {
   },
   computed: {
     ...mapGetters("noticeStore", ["getNoticeListObserver"]),
+    ...mapGetters("userStore", ["myPageInfoObserver"]),
   },
   created() {
     this.getNoticeList();
+    this.mypage();
   },
 };
 </script>

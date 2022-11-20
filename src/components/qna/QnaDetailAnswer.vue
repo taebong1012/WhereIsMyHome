@@ -16,7 +16,7 @@
             </v-col>
 
             <!-- 삭제, 수정 버튼 -->
-            <v-col align="right">
+            <v-col v-if="a.user_uid === myPageInfoObserver.uid || myPageInfoObserver.id === 'admin'" align="right">
               <v-btn large color="warning" @click="_deleteTest(a.uid)">삭제</v-btn>
               <v-btn large color="accent" @click="_goModify(a.uid, a.body)">수정</v-btn>
             </v-col>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "QnaDetailAnswer",
@@ -51,6 +51,8 @@ export default {
 
   methods: {
     ...mapActions("qnaStore", ["getQnaAnswerList"]),
+    ...mapActions("userStore", ["mypage"]),
+
     _deleteTest(answer_uid) {
       console.log("삭제버튼 클릭됨");
     },
@@ -63,14 +65,17 @@ export default {
           answer_uid: answer_uid,
           question_uid: this.uid,
           body: body,
-        }
+        },
       });
     },
   },
   computed: {
     ...mapGetters("qnaStore", ["getQnaAnswerObjectObserver"]),
+    ...mapGetters("userStore", ["myPageInfoObserver"]),
   },
   created() {
+    this.mypage();
+
     this.getQnaAnswerList(this.uid);
     console.log("디테일 답변" + this.uid);
   },
