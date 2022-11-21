@@ -16,7 +16,7 @@
             </v-col>
 
             <!-- 삭제, 수정 버튼 -->
-            <v-col v-if="a.user_uid === myPageInfoObserver.uid || myPageInfoObserver.id === 'admin'" align="right">
+            <v-col v-if="a.user_uid === myPageInfoObserver.uid || myPageInfoObserver.level >= 10" align="right">
               <v-btn large color="warning" @click="_deleteTest(a.uid)">삭제</v-btn>
               <v-btn large color="accent" @click="_goModify(a.uid, a.body)">수정</v-btn>
             </v-col>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "QnaDetailAnswer",
@@ -57,9 +57,7 @@ export default {
       this.deleteAnswer(answer_uid).then(() => {
         alert("답변을 삭제하였습니다.");
         this.$router.go(this.$router.currentRoute);
-
-      })
-
+      });
     },
     _goModify(answer_uid, body) {
       console.log("답변 수정 클릭됨");

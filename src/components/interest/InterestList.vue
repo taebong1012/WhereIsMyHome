@@ -13,7 +13,7 @@
         <v-card class="mx-auto" height="530px" elevation="2">
           <v-list subheader style="height: 532px; overflow-y: auto">
             <v-list-item v-for="apt in getInterestListObserver" :key="apt.aptCode">
-              <v-list-item-content @click="_goSpecific(apt.aptCode, apt.aptName)">
+              <v-list-item-content @click="_goSpecific(apt.aptCode)">
                 <v-list-item-title
                   v-text="apt.aptName"
                   class="text-h6 font-weight-bold primary--text pt-1"
@@ -41,13 +41,18 @@ export default {
   },
   methods: {
     ...mapActions("interestStore", ["getInterestAptList"]),
+    ...mapActions("apartmentStore", ["getAptListDetail"]),
 
-    _goSpecific(aptCode, aptName) {
+    _goSpecific(aptCode) {
       console.log("해당 아파트 코드, aptCode: " + aptCode);
-      this.$router.push({
-        name: "interestspecific",
-        params: { aptCode: aptCode, aptName: aptName },
-      });
+
+      //현재 루트 이름이 beforeclick이라면 inter
+      if (this.$route.name === "beforeclick") {
+        this.$router.push({
+          name: "interestspecific",
+          params: { aptCode: aptCode },
+        });
+      }
     },
     _goSearch() {
       this.$router.push({

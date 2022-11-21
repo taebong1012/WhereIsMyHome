@@ -34,7 +34,7 @@
 
     <v-row justify="center">
       <v-col class="flex-shrink-0" align="right" xl="8">
-        <v-btn v-if="myPageInfoObserver.id === 'admin'" class="ma-0" color="secondary" @click="_goWrite" depressed large
+        <v-btn v-if="myPageInfoObserver.level >= 10" class="ma-0" color="secondary" @click="_goWrite" depressed large
           >공지 등록</v-btn
         >
       </v-col>

@@ -16,7 +16,7 @@
         <v-card height="600px" width="100%" class="elevation-2">
           <v-row>
             <v-col class="text-h4 font-weight-bold primary--text pt-4" align="center" align-self="center">
-              {{ aptName }}
+              {{ getAptListDetailObserver[0].apartmentName }}
               <v-btn color="pink" outlined @click="_interest">
                 <!-- 관심 아파트 등록 여부 정할 버튼! -->
                 <v-icon v-if="interest">mdi-heart</v-icon>

@@ -20,8 +20,8 @@
 
             <!-- 삭제, 수정 버튼 -->
             <v-col
-                v-if="getQnaObjectObserver.user_uid === myPageInfoObserver.uid || myPageInfoObserver.id === 'admin'"
-                align="right"
+              v-if="getQnaObjectObserver.user_uid === myPageInfoObserver.uid || myPageInfoObserver.level >= 10"
+              align="right"
             >
               <v-btn large color="warning" @click="_deleteTest">삭제</v-btn>
               <v-btn large color="accent" @click="_goModify">수정</v-btn>
@@ -33,7 +33,7 @@
       <v-row justify="center">
         <v-col xl="8">
           <v-alert class="text-h6 text-left" border="left" colored-border color="accent" min-height="200px"
-          >{{ getQnaObjectObserver.body }}
+            >{{ getQnaObjectObserver.body }}
           </v-alert>
         </v-col>
       </v-row>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "QnaDetailQuestion",
