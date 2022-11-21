@@ -12,13 +12,13 @@
 
     <v-row justify="center">
       <v-col align="center">
-        <apartment-search></apartment-search>
+        <apartment-search @updateList="_updateList"></apartment-search>
       </v-col>
     </v-row>
 
     <v-row justify="center">
       <v-col align="center" align-self="center">
-        <kakao-map></kakao-map>
+        <kakao-map ref="kakaoMapCompo" list="list"></kakao-map>
       </v-col>
       <v-col>
         <router-view></router-view>
@@ -32,9 +32,15 @@
 <script>
 import ApartmentSearch from "@/components/apartment/ApartmentSearch.vue";
 import KakaoMap from "@/components/apartment/KakaoMap.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "AppApartment",
+  data() {
+    return {
+      list: [],
+    };
+  },
   components: {
     ApartmentSearch,
     KakaoMap,
@@ -42,7 +48,22 @@ export default {
   created() {
     // this.$store.commit("apartmentStore/SET_APT_LIST", []);
   },
-  methods: {},
+  methods: {
+    _updateList() {
+      console.log("검색되어 지도가 변경되어야한다.");
+      let result = [];
+      for (let i = 0; i < this.getAptListObserver.length; i++) {
+        const apt = this.getAptListObserver[i];
+        result.push([apt.lat, apt.lng]);
+      }
+      console.log(result);
+      this.$refs.kakaoMapCompo.displayMarker(result);
+      this.list = result;
+    },
+  },
+  computed: {
+    ...mapGetters("apartmentStore", ["getAptListObserver"]),
+  }
 };
 </script>
 

@@ -3,20 +3,15 @@
     <v-card elevation="2">
       <div id="map"></div>
     </v-card>
-    <div class="button-group">
-      <v-btn @click="displayMarker(markerPositions1)">marker set 1</v-btn>
-      <v-btn @click="displayMarker(markerPositions2)">marker set 2</v-btn>
-      <v-btn @click="displayMarker([])">marker set 3 (empty)</v-btn>
-      <v-btn @click="displayInfoWindow">infowindow</v-btn>
-    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   name: "KakaoMap",
+  props: ["list"],
   data() {
     return {
       markerPositions2: [
@@ -35,15 +30,18 @@ export default {
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
+      console.log("맵 초기화")
     } else {
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
       script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0";
       document.head.appendChild(script);
+      console.log("스크립트 설정");
     }
   },
   methods: {
+
     initMap() {
       const container = document.getElementById("map");
       const options = {
@@ -56,6 +54,7 @@ export default {
       this.map = new kakao.maps.Map(container, options);
     },
     displayMarker(markerPositions) {
+      console.log(markerPositions);
       if (this.markers.length > 0) {
         this.markers.forEach((marker) => marker.setMap(null));
       }
@@ -64,11 +63,11 @@ export default {
 
       if (positions.length > 0) {
         this.markers = positions.map(
-          (position) =>
-            new kakao.maps.Marker({
-              map: this.map,
-              position,
-            })
+            (position) =>
+                new kakao.maps.Marker({
+                  map: this.map,
+                  position,
+                })
         );
 
         const bounds = positions.reduce((bounds, latlng) => bounds.extend(latlng), new kakao.maps.LatLngBounds());
@@ -84,8 +83,8 @@ export default {
       }
 
       var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
-        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+          iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
+          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
       this.infowindow = new kakao.maps.InfoWindow({
         map: this.map, // 인포윈도우가 표시될 지도
@@ -96,23 +95,6 @@ export default {
 
       this.map.setCenter(iwPosition);
     },
-  },
-  computed: {
-    ...mapGetters("apartmentStore", ["getAptListObserver"]),
-  },
-  created() {
-    // this.markers = [];
-    // console.log(this.getAptListObserver);
-    // for (let i = 0; i < this.getAptListObserver.length; i++) {
-    //   console.log("lat: " + this.getAptListObserver[i].lat + "\nlng: " + this.getAptListObserver[i].lng);
-    //   let latlng = [this.getAptListObserver[i].lat, this.getAptListObserver[i].lng];
-    //   this.markers.push(latlng);
-    // }
-    // console.log("그냥 배열");
-    // console.log(this.markerPositions2);
-    // console.log("추가한 배열");
-    // console.log(this.markers);
-    // this.displayMarker(this.markerPositions2);
   },
 };
 </script>
