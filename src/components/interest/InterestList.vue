@@ -36,8 +36,12 @@ export default {
   data() {
     return {};
   },
-  created() {},
+  created() {
+    this.getInterestAptList();
+  },
+
   methods: {
+    ...mapActions("interestStore", ["getInterestAptList"]),
     ...mapActions("apartmentStore", ["getAptListDetail"]),
 
     _goSpecific(aptCode) {
