@@ -58,20 +58,77 @@ const apartmentStore = {
   },
   actions: {
     getSidoList({ commit }) {
-      getSidoList(({ data }) => {
-        commit("SET_SIDO_LIST", data);
-      });
+      getSidoList(
+        ({ data }) => {
+          commit("SET_SIDO_LIST", data);
+        },
+        async (error) => {
+          if (error.response.status === 401) {
+            await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+          }
+          getSidoList(
+            ({ data }) => {
+              commit("SET_SIDO_LIST", data);
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({ name: "login" });
+            }
+          );
+        }
+      );
     },
+
     getGugunList({ commit }, { sidoName }) {
-      getGugunList(sidoName, ({ data }) => {
-        commit("SET_GUGUN_LIST", data);
-        commit("SET_DONG_LIST", []);
-      });
+      getGugunList(
+        sidoName,
+        ({ data }) => {
+          commit("SET_GUGUN_LIST", data);
+          commit("SET_DONG_LIST", []);
+        },
+        async (error) => {
+          if (error.response.status === 401) {
+            await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+          }
+          getGugunList(
+            sidoName,
+            ({ data }) => {
+              commit("SET_GUGUN_LIST", data);
+              commit("SET_DONG_LIST", []);
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({ name: "login" });
+            }
+          );
+        }
+      );
     },
+
     getDongList({ commit }, { sidoName, gugunName }) {
-      getDongList(sidoName, gugunName, ({ data }) => {
-        commit("SET_DONG_LIST", data);
-      });
+      getDongList(
+        sidoName,
+        gugunName,
+        ({ data }) => {
+          commit("SET_DONG_LIST", data);
+        },
+        async (error) => {
+          if (error.response.status === 401) {
+            await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+          }
+          getDongList(
+            sidoName,
+            gugunName,
+            ({ data }) => {
+              commit("SET_DONG_LIST", data);
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({ name: "login" });
+            }
+          );
+        }
+      );
     },
 
     getDealAptList({ commit }, { sidoName, gugunName, dongName, word }) {
@@ -105,15 +162,51 @@ const apartmentStore = {
     },
 
     getDealAptDetail({ commit }, no) {
-      getDealAptDetail(no, ({ data }) => {
-        commit("SET_APT_OBJECT", data);
-      });
+      getDealAptDetail(
+        no,
+        ({ data }) => {
+          commit("SET_APT_OBJECT", data);
+        },
+        async (error) => {
+          if (error.response.status === 401) {
+            await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+          }
+          getDealAptDetail(
+            no,
+            ({ data }) => {
+              commit("SET_APT_OBJECT", data);
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({ name: "login" });
+            }
+          );
+        }
+      );
     },
 
     getAptListDetail({ commit }, aptCode) {
-      getAptListDetail(aptCode, ({ data }) => {
-        commit("SET_APT_LIST_DETAIL", data);
-      });
+      getAptListDetail(
+        aptCode,
+        ({ data }) => {
+          commit("SET_APT_LIST_DETAIL", data);
+        },
+        async (error) => {
+          if (error.response.status === 401) {
+            await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+          }
+          getAptListDetail(
+            aptCode,
+            ({ data }) => {
+              commit("SET_APT_LIST_DETAIL", data);
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({ name: "login" });
+            }
+          );
+        }
+      );
     },
   },
 
