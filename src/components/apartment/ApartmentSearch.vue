@@ -70,9 +70,9 @@ export default {
       if (this.region.sidoName === "" || this.region.gugunName === "" || this.region.dongName === "") return;
     },
 
-    _search() {
-      this.getDealAptList(this.region);
-      this.$emit("updateList");
+    async _search() {
+      await this.getDealAptList(this.region);
+      await this.$emit("updateList");
       if (this.$route.name !== "apartmentlist") {
         this.$router.push({name: "apartmentlist"});
         // console.log(this.region.sidoName + " " + this.region.gugunName + " " + this.region.dongName + " " + this.region.word)

@@ -50,20 +50,21 @@ export default {
   },
   methods: {
     _updateList() {
-      console.log("검색되어 지도가 변경되어야한다.");
+
       let result = [];
       for (let i = 0; i < this.getAptListObserver.length; i++) {
         const apt = this.getAptListObserver[i];
         result.push([apt.lat, apt.lng]);
       }
-      console.log(result);
+
+      console.log(result.length);
       this.$refs.kakaoMapCompo.displayMarker(result);
       this.list = result;
     },
   },
   computed: {
     ...mapGetters("apartmentStore", ["getAptListObserver"]),
-  }
+  },
 };
 </script>
 
