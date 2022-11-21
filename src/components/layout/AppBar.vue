@@ -53,7 +53,8 @@
           </v-col>
 
           <!-- 미로그인 시: Register 버튼 | 로그인 시: 마이페이지 버튼 -->
-          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="2" class="text-right">
+          <v-col cols="3" v-if="$vuetify.breakpoint.smAndUp">
+            <!--          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="1" class="text-right">-->
             <v-btn v-if="!isLoginObserver" color="white" target="_black" to="/user/regist" class="ml-3 text-capitalize">
               <v-icon left>+</v-icon>
               REGIST
@@ -63,18 +64,19 @@
               <v-icon left>mdi-logout</v-icon>
               MyPage
             </v-btn>
-          </v-col>
+            <!--          </v-col>-->
 
-          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="2" class="text-right">
-            <v-btn v-if="!isLoginObserver" color="primary" target="_black" to="/user" class="ml-3 text-capitalize">
+            <!--          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="1" class="text-right">-->
+            <v-btn v-if="!isLoginObserver" color="primary" target="_black" to="/user" class="ml-1 text-capitalize">
               <v-icon left>mdi-login</v-icon>
               LOGIN
             </v-btn>
 
-            <v-btn v-else color="primary" target="_black" @click="_logout" class="ml-3 text-capitalize">
+            <v-btn v-else color="primary" target="_black" @click="_logout" class="ml-1 text-capitalize">
               <v-icon left>mdi-logout</v-icon>
               LOGOUT
             </v-btn>
+            <!--          </v-col>-->
           </v-col>
         </v-row>
       </v-container>
