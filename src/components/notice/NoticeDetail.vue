@@ -33,6 +33,9 @@
             <v-col cols="2">
               <v-btn color="secondary" @click="_goBack">목록으로 돌아가기</v-btn>
             </v-col>
+            <v-col v-if="myPageInfoObserver.id === 'chlwlsdnid' || myPageInfoObserver.id === 'admin'" cols="2">
+              <v-btn color="red" @click="_doDelete" style="color: white">삭제</v-btn>
+            </v-col>
           </v-row>
         </v-col>
       </v-row>
@@ -51,11 +54,17 @@ export default {
   },
   computed: {
     ...mapGetters("noticeStore", ["getNoticeObjectObserver"]),
+    ...mapGetters("userStore", ["myPageInfoObserver"]),
   },
   methods: {
     ...mapActions("noticeStore", ["getNoticeOne"]),
+    ...mapActions("userStore", ["mypage"]),
+
     _goBack() {
       this.$router.go(-1);
+    },
+    _doDelete() {
+      //+++++++실제로 삭제!!!!!>_<
     },
   },
   components: {},
@@ -63,6 +72,7 @@ export default {
   created() {
     this.uid = this.$route.params.uid;
     this.getNoticeOne(this.uid);
+    this.mypage();
   },
 };
 </script>
