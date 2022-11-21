@@ -36,15 +36,14 @@ export default {
   data() {
     return {};
   },
-  created() {
-    this.getInterestAptList();
-  },
+  created() {},
   methods: {
-    ...mapActions("interestStore", ["getInterestAptList"]),
     ...mapActions("apartmentStore", ["getAptListDetail"]),
 
     _goSpecific(aptCode) {
       console.log("해당 아파트 코드, aptCode: " + aptCode);
+
+      this.getAptListDetail(aptCode);
 
       //현재 루트 이름이 beforeclick이라면 inter
       if (this.$route.name === "beforeclick") {
