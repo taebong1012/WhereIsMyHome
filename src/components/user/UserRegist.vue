@@ -6,10 +6,10 @@
           <div class="text-h4">Regist</div>
         </v-card-title>
         <v-card-text>
-          <v-text-field v-model="id" label="ID" outlined type="text"></v-text-field>
-          <v-text-field v-model="pw" label="PW" outlined type="password"></v-text-field>
-          <v-text-field v-model="name" label="NAME" outlined type="text"></v-text-field>
-          <v-text-field v-model="email" label="EMAIL" outlined type="text"></v-text-field>
+          <v-text-field v-model="user.id" label="ID" outlined type="text"></v-text-field>
+          <v-text-field v-model="user.pw" label="PW" outlined type="password"></v-text-field>
+          <v-text-field v-model="user.name" label="NAME" outlined type="text"></v-text-field>
+          <v-text-field v-model="user.email" label="EMAIL" outlined type="text"></v-text-field>
 
           <div class="text-right">
             <v-btn color="primary" @click="_regist"> Regist </v-btn>
@@ -27,19 +27,25 @@ export default {
   name: "UserRegist",
   data() {
     return {
-      id: "",
-      pw: "",
-      name: "",
-      email: "",
-      user: Object,
+      user: {
+        id: "",
+        pw: "",
+        name: "",
+        email: "",
+      },
     };
   },
   methods: {
     ...mapActions("userStore", ["userRegist"]),
     _regist() {
-      this.user = { id: this.id, pw: this.pw, name: this.name, email: this.email };
       console.log(this.user);
       this.userRegist(this.user);
+
+      //필드 초기화
+      this.id = "";
+      this.pw = "";
+      this.name = "";
+      this.email = "";
     },
   },
 };

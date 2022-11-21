@@ -116,8 +116,10 @@ const userStore = {
     },
 
     //회원가입
-    async userRegist(user) {
+    async userRegist({ commit }, user) {
       //성공하면 msg가 success로 들어오는지?
+      console.log("UserStore");
+      console.log(user);
       await regist(
         user,
 
@@ -132,9 +134,6 @@ const userStore = {
         // //실패 -> 회원가입 실패 alert
         () => {
           alert("회원가입 실패");
-          router.push({
-            name: "userregist",
-          });
         }
       );
     },
