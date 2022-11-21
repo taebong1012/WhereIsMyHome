@@ -34,7 +34,7 @@
               <v-btn color="secondary" @click="_goBack">목록으로 돌아가기</v-btn>
             </v-col>
             <v-col v-if="myPageInfoObserver.level >= 10" cols="2">
-              <v-btn color="red" @click="_doDelete" style="color: white">삭제</v-btn>
+              <v-btn color="red" @click="_doDelete(getNoticeObjectObserver.uid)" style="color: white">삭제</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "NoticeDetail",
@@ -57,14 +57,20 @@ export default {
     ...mapGetters("userStore", ["myPageInfoObserver"]),
   },
   methods: {
-    ...mapActions("noticeStore", ["getNoticeOne"]),
+    ...mapActions("noticeStore", ["getNoticeOne", "deleteNotice"]),
     ...mapActions("userStore", ["mypage"]),
 
     _goBack() {
       this.$router.go(-1);
     },
-    _doDelete() {
+    async _doDelete(uid) {
       //+++++++실제로 삭제!!!!!>_<
+      await this.deleteNotice(uid).then(() => {
+            alert("삭제 하였습니다.");
+            this.$router.push({name: "noticelist"});
+          }
+      );
+
     },
   },
   components: {},

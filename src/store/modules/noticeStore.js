@@ -1,5 +1,5 @@
 import router from "@/router";
-import { getNoticeList, getNoticeOne, createNotice, searchNotice } from "@/api/notice";
+import { getNoticeList, getNoticeOne, createNotice, searchNotice, deleteNotice } from "@/api/notice";
 
 const noticeStore = {
   namespaced: true,
@@ -23,6 +23,17 @@ const noticeStore = {
       getNoticeList(({ data }) => {
         console.log(data);
         commit("SET_NOTICE_LIST", data);
+      }, async (error) => {
+        if (error.response.status === 401) {
+          await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+        }
+        await getNoticeList(
+            ({data}) => {
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({name: 'login'});
+            });
       });
     },
     getNoticeOne({ commit }, uid) {
@@ -30,6 +41,17 @@ const noticeStore = {
       getNoticeOne(uid, ({ data }) => {
         console.log(data);
         commit("SET_NOTICE_OBJECT", data);
+      }, async (error) => {
+        if (error.response.status === 401) {
+          await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+        }
+        await getNoticeOne(uid,
+            ({data}) => {
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({name: 'login'});
+            });
       });
     },
     createNotice({ commit }, params) {
@@ -38,14 +60,52 @@ const noticeStore = {
         router.push({
           name: "noticelist",
         });
+      }, async (error) => {
+        if (error.response.status === 401) {
+          await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+        }
+        await createNotice(params,
+            ({data}) => {
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({name: 'login'});
+            });
       });
     },
-    searchNotice({ commit }, word) {
+    async searchNotice({ commit }, word) {
       commit("SET_NOTICE_LIST", []);
       searchNotice(word, ({ data }) => {
         commit("SET_NOTICE_LIST", data);
+      }, async (error) => {
+        if (error.response.status === 401) {
+          await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+        }
+        await searchNotice(word,
+            ({data}) => {
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({name: 'login'});
+            });
       });
     },
+    async deleteNotice({commit}, notice_uid){
+      await deleteNotice(notice_uid, ({data})=>{
+
+      }, async (error) => {
+        if (error.response.status === 401) {
+          await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+        }
+        await deleteNotice(notice_uid,
+            ({data}) => {
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({name: 'login'});
+            });
+      });
+    }
   },
   mutations: {
     SET_NOTICE_LIST(state, payload) {

@@ -22,4 +22,11 @@ async function searchNotice(word, success, fail) {
     await api.get(`/notice/search/${word}`).then(success).catch(fail);
 }
 
-export {getNoticeList, getNoticeOne, createNotice, searchNotice};
+async function deleteNotice(notice_uid, success, fail) {
+    api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+    console.log("삭제하고싶엉... " + notice_uid);
+
+    await api.delete(`/notice/${notice_uid}`).then(success).catch(fail);
+}
+
+export {getNoticeList, getNoticeOne, createNotice, searchNotice, deleteNotice};
