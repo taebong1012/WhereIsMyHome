@@ -13,6 +13,11 @@ export default new Vuetify({
         primary: "#000",
         secondary: "#818383",
         accent: "#2178ff",
+
+        // primary: "#000",
+        // secondary: "#393E46",
+        // accent: "#222831",
+        // warning: "#00ADB5",
       },
     },
   },

@@ -136,7 +136,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("userStore", ["userDelete", "userLogout"]),
+    ...mapActions("userStore", ["userDelete", "userLogout", "modifyUser"]),
     _doWithdrawal() {
       if (this.curpw === "") {
         alert("현재 비밀번호를 입력해주세요.");
@@ -144,9 +144,6 @@ export default {
         if (confirm("정말 탈퇴하시겠습니까?")) {
           console.log("탈퇴 진행");
 
-          //logout 시키고
-
-          //찐으로 탈퇴 ㄱ
           this.userDelete();
           this.userLogout();
 
@@ -165,24 +162,33 @@ export default {
     },
 
     _doModify() {
-      if (this.inputpw === this.inputpwcheck && this.inputpwcheck != "") {
-        this.user.pw = this.inputpwcheck;
-
-        console.log(this.user);
-
-        if (this.curpw === "") {
-          alert("현재 비밀번호를 입력해주세요.");
-        } else if (this.curpw === this.myPageInfoObserver.pw) {
-          //+++++정보 수정 시키기
-          // this.$router.push({ name: "mypageinfo" });
-        } else {
-          alert("현재 비밀번호를 다시 확인해주세요.");
-          this.curpw = "";
+      //1. 현재 password가 맞음
+      if (this.curpw === this.myPageInfoObserver.pw) {
+        //1-1. 변경할 password랑 check가 맞지 않음
+        if (this.inputpw != this.inputpwcheck) {
+          alert("변경할 비밀번호를 다시 확인해주세요.");
         }
-      } else {
-        alert("변경할 비밀번호를 다시 확인해주세요.");
-        this.inputpw = "";
-        this.inputpwcheck = "";
+        //1-2. 변경할 password랑 check가 맞음
+        else {
+          //1-2-1. password를 바꾸지 않을거임
+          if (this.inputpwcheck === "") {
+            this.user.pw = null;
+          }
+          //1-2-2. password랑 check도 맞고 바꿀 패스워드 값도 있음
+          else if (this.inputpwcheck.length > 0) {
+            this.user.pw = this.inputpwcheck;
+          }
+          //1-3. 아무데도 걸리지 않음?!?!
+          else {
+            console.log("사용자 정보 변경하는 곳 이상함");
+          }
+          console.log(this.user);
+          this.modifyUser(this.user);
+        }
+      }
+      //2. 현재 password가 안맞음
+      else {
+        alert("현재 비밀번호를 사용해주세요.");
         this.curpw = "";
       }
     },

@@ -32,7 +32,7 @@
 <script>
 import ApartmentSearch from "@/components/apartment/ApartmentSearch.vue";
 import KakaoMap from "@/components/apartment/KakaoMap.vue";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "AppApartment",
@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     _updateList() {
-
       let result = [];
       for (let i = 0; i < this.getAptListObserver.length; i++) {
         const apt = this.getAptListObserver[i];

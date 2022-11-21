@@ -1,6 +1,6 @@
 // import jwtDecode from "jwt-decode";
 import router from "@/router";
-import { login, logout, regist, mypage, authUser, tokenRegeneration, deleteUser } from "@/api/user";
+import { login, logout, regist, mypage, authUser, tokenRegeneration, deleteUser, modifyUser } from "@/api/user";
 
 const userStore = {
   namespaced: true,
@@ -134,6 +134,33 @@ const userStore = {
         // //실패 -> 회원가입 실패 alert
         () => {
           alert("회원가입 실패");
+        }
+      );
+    },
+
+    //사용자 정보 수정
+    async modifyUser({ commit }, params) {
+      modifyUser(
+        params,
+        ({ data }) => {
+          alert("회원 정보 수정 완료");
+          router.push({ name: "mypage" });
+        },
+        async (error) => {
+          if (error.response.status === 401) {
+            await store.dispatch("userStore/tokenRegeneration", store.getters["userStore/getUserUidObserver"]);
+          }
+          modifyUser(
+            params,
+            ({ data }) => {
+              alert("회원 정보 수정 완료");
+              router.push({ name: "mypage" });
+            },
+            () => {
+              alert("로그인이 만료되었습니다.");
+              router.push({ name: "login" });
+            }
+          );
         }
       );
     },

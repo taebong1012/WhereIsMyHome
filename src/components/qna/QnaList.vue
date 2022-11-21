@@ -17,13 +17,19 @@
                   <th class="text-center">글 번호</th>
                   <th class="text-center">제목</th>
                   <th class="text-center">작성자</th>
+                  <th class="text-center">답변 여부</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
                   <td>{{ item.uid }}</td>
-                  <td>{{ item.title }}</td>
+
+                  <td>
+                    {{ item.title }} <b>&nbsp;&nbsp;&nbsp;({{ item.answer_count }})</b>
+                  </td>
                   <td>{{ item.user_name }}</td>
+                  <td v-if="item.answer_count > 0" style="color: green; font-weight: bold">답변완료</td>
+                  <td v-else></td>
                 </tr>
               </tbody>
             </template>

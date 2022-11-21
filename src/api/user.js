@@ -16,6 +16,11 @@ async function logout(uid, success, fail) {
   await api.post(`/user/logout/${uid}`).then(success).catch(fail);
 }
 
+async function modifyUser(user, success, fail) {
+  api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+  await api.patch(`/user`, user).then(success).catch(fail);
+}
+
 async function mypage(success, fail) {
   api_headers.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
   await api_headers.get(`/user`).then(success).catch(fail);
@@ -36,4 +41,4 @@ async function deleteUser(success, fail) {
   await api_headers.delete(`/user`).then(success).catch(fail);
 }
 
-export { login, logout, regist, mypage, authUser, tokenRegeneration, deleteUser };
+export { login, logout, regist, mypage, authUser, tokenRegeneration, deleteUser, modifyUser };
