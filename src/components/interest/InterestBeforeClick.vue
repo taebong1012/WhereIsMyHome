@@ -10,7 +10,7 @@
 
     <v-row justify="center">
       <v-col align="center" align-self="center">
-        <v-card height="600px" width="100%" elevation="2">
+        <v-card class="d-flex justify-center align-center" height="600px" width="100%" elevation="2">
           <v-row justify="center">
             <v-col align="center" align-self="center">
               <v-img src="@/../images/smallapt.png" :aspect-ratio="16 / 9" width="50%" />

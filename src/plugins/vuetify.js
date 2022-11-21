@@ -10,9 +10,12 @@ export default new Vuetify({
     },
     themes: {
       light: {
-        primary: "#000",
-        secondary: "#818383",
         accent: "#2178ff",
+        primary: "#000",
+        secondary: "#818383", //회색
+        warning: "#DB0000", //삭제 같은 중요한 버튼
+        interest: "#E14F94",
+        background: "#f8f9fe",
 
         // primary: "#000",
         // secondary: "#393E46",

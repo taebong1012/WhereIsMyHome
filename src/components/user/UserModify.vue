@@ -102,10 +102,10 @@
 
     <v-row justify="center">
       <v-col cols="2" align="center" align-self="center">
-        <v-btn color="red" @click="_doWithdrawal" large style="color: white">탈퇴</v-btn>
+        <v-btn color="warning" @click="_doWithdrawal" large style="color: white">탈퇴</v-btn>
       </v-col>
       <v-col cols="2" align="center" align-self="center">
-        <v-btn color="primary" @click="_cancel" large>취소</v-btn>
+        <v-btn color="secondary" @click="_cancel" large>취소</v-btn>
       </v-col>
       <v-col cols="2" align="center" align-self="center">
         <v-btn color="accent" @click="_doModify" large>수정 완료</v-btn>

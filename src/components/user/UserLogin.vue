@@ -6,9 +6,9 @@
           <div class="text-h4">Login</div>
         </v-card-title>
         <v-card-text>
-          <v-text-field v-model="id" label="ID" outlined type="text"></v-text-field>
+          <v-text-field v-model="id" label="ID" @keyup.enter="_login" outlined type="text"></v-text-field>
 
-          <v-text-field v-model="pw" label="PW" outlined type="password"></v-text-field>
+          <v-text-field v-model="pw" label="PW" @keyup.enter="_login" outlined type="password"></v-text-field>
           <div class="text-right">
             <v-btn color="primary" @click="_login"> Login </v-btn>
           </div>

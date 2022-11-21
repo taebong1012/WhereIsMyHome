@@ -2,10 +2,10 @@
   <div>
     <v-row justify="center">
       <v-col cols="6" align="center" align-self="center">
-        <v-btn class="ma-0" @click="_goBack" color="warning" depressed large style="width: 100%"> 뒤로가기</v-btn>
+        <v-btn class="ma-0" @click="_goBack" color="normal" depressed large style="width: 100%"> 뒤로가기</v-btn>
       </v-col>
       <v-col cols="6" align="center" align-self="center">
-        <v-btn class="ma-0" color="pink" @click="_goInterest" depressed large style="color: white; width: 100%">
+        <v-btn class="ma-0" color="interest" @click="_goInterest" depressed large style="color: white; width: 100%">
           나의 관심 아파트
         </v-btn>
       </v-col>

@@ -19,7 +19,7 @@
             </v-col>
 
             <v-col cols="2" align-self="center" align="center">
-              <v-btn @click="_goInterest" color="pink" x-large style="color: white">나의 관심 아파트</v-btn>
+              <v-btn @click="_goInterest" color="interest" x-large style="color: white">나의 관심 아파트</v-btn>
             </v-col>
           </v-row>
         </v-card>

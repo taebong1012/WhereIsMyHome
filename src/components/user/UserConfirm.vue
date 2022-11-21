@@ -9,7 +9,7 @@
           <v-text-field v-model="inputpw" label="PW" outlined type="password"></v-text-field>
           <v-row justify="center">
             <v-col cols="2"> <v-btn color="accent" @click="_cancel"> 취소 </v-btn> </v-col>
-            <v-col cols="2"> <v-btn color="red" @click="_goModify" style="color: white"> 확인 </v-btn> </v-col>
+            <v-col cols="2"> <v-btn color="secondary" @click="_goModify" style="color: white"> 확인 </v-btn> </v-col>
           </v-row>
         </v-card-text>
       </v-card>

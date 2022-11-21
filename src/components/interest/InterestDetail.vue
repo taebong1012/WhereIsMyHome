@@ -14,7 +14,7 @@
           <v-row>
             <v-col class="text-h4 font-weight-bold primary--text pt-4" align="center" align-self="center">
               {{ dumpApt.name }}
-              <v-btn color="pink" outlined @click="interest = !interest">
+              <v-btn color="interest" outlined @click="interest = !interest">
                 <!-- 관심 아파트 등록 여부 정할 버튼! -->
                 <v-icon v-if="interest">mdi-heart</v-icon>
                 <v-icon v-else>mdi-heart-outline</v-icon>

@@ -2,7 +2,7 @@
   <div>
     <v-row justify="center">
       <v-col align="center" align-self="center">
-        <v-btn class="ma-0" color="warning" @click="_goSearch" depressed large style="color: white; width: 100%">
+        <v-btn class="ma-0" color="secondary" @click="_goSearch" depressed large style="color: white; width: 100%">
           더 많은 아파트 찾으러 가기
         </v-btn>
       </v-col>

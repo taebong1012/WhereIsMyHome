@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-navigation-drawer
-        v-if="!$vuetify.breakpoint.smAndUp"
-        v-model="drawer"
-        :clipped="$vuetify.breakpoint.smAndUp"
-        app
-        color="primary"
-        dark
+      v-if="!$vuetify.breakpoint.smAndUp"
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.smAndUp"
+      app
+      color="primary"
+      dark
     >
       <!-- 네비 -->
       <v-list color="primary" nav>
@@ -27,12 +27,8 @@
       <v-container :class="{ 'px-0': !$vuetify.breakpoint.mdAndUp }">
         <v-row :no-gutters="!$vuetify.breakpoint.smAndUp" align="center">
           <v-col class="d-flex align-start" cols="2">
-            <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" @click.stop="drawer = !drawer"/>
-            <v-toolbar-title
-                class="font-weight-bold text-h6 primary--text"
-                style="cursor: pointer"
-                @click="_homeClick"
-            >
+            <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" @click.stop="drawer = !drawer" />
+            <v-toolbar-title class="font-weight-bold text-h6 primary--text" style="cursor: pointer" @click="_homeClick">
               <v-icon color="primary" large>mdi-feather</v-icon>
               <span class="accent--text">H</span>
               ouse
@@ -41,14 +37,14 @@
 
           <v-col v-if="$vuetify.breakpoint.smAndUp" align="center">
             <v-btn
-                v-for="(item, i) in barItems"
-                :key="i"
-                :to="item.to"
-                class="text-capitalize"
-                exact
-                exact-active-class="accent--text"
-                text
-            >{{ item.title }}
+              v-for="(item, i) in barItems"
+              :key="i"
+              :to="item.to"
+              class="text-capitalize"
+              exact
+              exact-active-class="accent--text"
+              text
+              >{{ item.title }}
             </v-btn>
           </v-col>
 
@@ -56,23 +52,23 @@
           <v-col cols="3" v-if="$vuetify.breakpoint.smAndUp">
             <!--          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="1" class="text-right">-->
             <v-btn v-if="!isLoginObserver" color="white" target="_black" to="/user/regist" class="ml-3 text-capitalize">
-              <v-icon left>+</v-icon>
+              <v-icon left>mdi-account-plus</v-icon>
               REGIST
             </v-btn>
 
-            <v-btn v-else color="primary" target="_black" :to="{ name: 'mypage' }" class="ml-3 text-capitalize">
-              <v-icon left>mdi-logout</v-icon>
+            <v-btn v-else color="accent" target="_black" :to="{ name: 'mypage' }" class="ml-3 text-capitalize">
+              <v-icon left>mdi-account</v-icon>
               MyPage
             </v-btn>
             <!--          </v-col>-->
 
             <!--          <v-col v-if="$vuetify.breakpoint.smAndUp" cols="1" class="text-right">-->
-            <v-btn v-if="!isLoginObserver" color="primary" target="_black" to="/user" class="ml-1 text-capitalize">
+            <v-btn v-if="!isLoginObserver" color="accent" target="_black" to="/user" class="ml-1 text-capitalize">
               <v-icon left>mdi-login</v-icon>
               LOGIN
             </v-btn>
 
-            <v-btn v-else color="primary" target="_black" @click="_logout" class="ml-1 text-capitalize">
+            <v-btn v-else color="white" target="_black" @click="_logout" class="ml-1 text-capitalize">
               <v-icon left>mdi-logout</v-icon>
               LOGOUT
             </v-btn>
@@ -85,7 +81,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({

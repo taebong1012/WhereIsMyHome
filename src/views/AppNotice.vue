@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <v-row justify="center">
-          <v-col xl="8">
+          <v-col cols="8" xl="8">
             <div class="text-h3 font-weight-bold primary--text pt-4">
               <h4>Notice</h4>
             </div>

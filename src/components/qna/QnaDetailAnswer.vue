@@ -2,13 +2,13 @@
   <div class="app">
     <div v-for="a in getQnaAnswerObjectObserver" :key="a.uid">
       <v-row justify="center">
-        <v-col xl="8" align="left">
+        <v-col cols="8" xl="8" align="left">
           <div class="text-h5 font-weight-bold primary--text pt-4">A. {{ a.user_name }} 님의 답변</div>
         </v-col>
       </v-row>
 
       <v-row justify="center">
-        <v-col xl="8" align="center">
+        <v-col cols="8" xl="8" align="center">
           <v-row>
             <v-col align="left" align-self="center">
               <!-- 깃털 아이콘 -->
@@ -16,22 +16,26 @@
             </v-col>
 
             <!-- 삭제, 수정 버튼 -->
-            <v-col v-if="a.user_uid === myPageInfoObserver.uid || myPageInfoObserver.level >= 10" align="right">
-              <v-btn large color="warning" @click="_deleteTest(a.uid)">삭제</v-btn>
-              <v-btn large color="accent" @click="_goModify(a.uid, a.body)">수정</v-btn>
+            <v-col
+              v-if="a.user_uid === myPageInfoObserver.uid || myPageInfoObserver.level >= 10"
+              cols="8"
+              align="right"
+            >
+              <v-btn color="warning" @click="_deleteTest(a.uid)"><v-icon>mdi-trash-can-outline</v-icon></v-btn>
+              <v-btn color="secondary" @click="_goModify(a.uid, a.body)"><v-icon>mdi-pencil</v-icon></v-btn>
             </v-col>
           </v-row>
         </v-col>
       </v-row>
 
       <v-row justify="center">
-        <v-col xl="8">
-          <v-alert class="text-h6 text-left" border="left" colored-border color="yellow">{{ a.body }}</v-alert>
+        <v-col cols="8" xl="8">
+          <v-alert class="text-h6 text-left" border="left" colored-border color="secondary">{{ a.body }}</v-alert>
         </v-col>
       </v-row>
 
       <v-row justify="center">
-        <v-col xl="8">
+        <v-col cols="8" xl="8">
           <v-divider class="my-1"></v-divider>
         </v-col>
       </v-row>
