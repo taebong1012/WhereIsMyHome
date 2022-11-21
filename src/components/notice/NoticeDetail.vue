@@ -33,7 +33,7 @@
             <v-col cols="2">
               <v-btn color="secondary" @click="_goBack">목록으로 돌아가기</v-btn>
             </v-col>
-            <v-col v-if="myPageInfoObserver.levle >= 10" cols="2">
+            <v-col v-if="myPageInfoObserver.level >= 10" cols="2">
               <v-btn color="red" @click="_doDelete" style="color: white">삭제</v-btn>
             </v-col>
           </v-row>

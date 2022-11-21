@@ -40,6 +40,8 @@ const userStore = {
 
           commit("SET_IS_LOGIN", true);
           commit("SET_USER_UID", data.uid);
+          commit("SET_LEVEL", data.level);
+          console.log("레벨 설정 : " + data.level);
           sessionStorage.setItem("access-token", accessToken);
           sessionStorage.setItem("refresh-token", refreshToken);
           return true;
@@ -159,6 +161,9 @@ const userStore = {
     },
     SET_USER_UID(state, payload) {
       state.uid = payload;
+    },
+    SET_LEVEL(state, payload) {
+      state.level = payload;
     },
   },
 };
