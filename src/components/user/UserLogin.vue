@@ -6,6 +6,9 @@
           <div class="text-h4">Login</div>
         </v-card-title>
         <v-card-text>
+          <div class="text-center">
+            <v-btn color="yellow" @click="_kakaoLogin"> 카카오로 로그인 </v-btn>
+          </div>
           <v-text-field v-model="id" label="ID" @keyup.enter="_login" outlined type="text"></v-text-field>
 
           <v-text-field v-model="pw" label="PW" @keyup.enter="_login" outlined type="password"></v-text-field>
@@ -21,7 +24,7 @@
   </v-row>
 </template>
 <script type="text/javascript">
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "UserLogin",
@@ -41,16 +44,16 @@ export default {
         pw: this.pw,
       };
       if (this.userLogin(user)) {
-        this.$router.push({name: "home"});
+        this.$router.push({ name: "home" });
       }
     },
     _kakaoLogin() {
       window.Kakao.Auth.login({
-        scope: 'profile_nickname, account_email',
+        scope: "profile_nickname, account_email",
         success: (authObj) => {
           console.log(authObj["access_token"]);
           this.kakaoLogin(authObj["access_token"]).then(() => {
-            this.$router.push({name: "home"});
+            this.$router.push({ name: "home" });
           });
         },
       });

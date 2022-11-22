@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-btn @click="searchPlaces">찾아라 비밀의 열쇠</v-btn>
+    <v-radio-group v-model="selectedRadio" row @change="_radioChange">
+      <v-radio label="없음" value="remove"></v-radio>
+      <v-radio label="지하철역" value="subway"></v-radio>
+      <v-radio label="병원" value="hospital"></v-radio>
+      <v-radio label="학교" value="school"></v-radio>
+      <v-radio label="주차장" value="parking"></v-radio>
+    </v-radio-group>
     <v-card elevation="2">
       <div id="map"></div>
     </v-card>
@@ -8,25 +14,20 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import subwayIcon from "@/../images/subwayIcon.png";
+import hospitalIcon from "@/../images/hospitalIcon.png";
+import schoolIcon from "@/../images/schoolIcon.png";
 
 export default {
   name: "KakaoMap",
   props: ["list"],
   data() {
     return {
-      markerPositions2: [
-        [37.499590490909185, 127.0263723554437],
-        [37.499427948430814, 127.02794423197847],
-        [37.498553760499505, 127.02882598822454],
-        [37.497625593121384, 127.02935713582038],
-        [37.49629291770947, 127.02587362608637],
-        [37.49754540521486, 127.02546694890695],
-        [37.49646391248451, 127.02675574250912],
-      ],
+      categoryCode: "",
+      selectedRadio: "remove",
       markers: [],
-      subwayMarkers: [],
+      searchMarkers: [],
+      markerImage: null,
       infowindow: null,
     };
   },
@@ -45,6 +46,37 @@ export default {
     }
   },
   methods: {
+    _radioChange() {
+      console.log(this.selectedRadio);
+      //1. 없음(아무 정보도 표시하지 않음
+      this.removeSearchMarker();
+
+      //2. 지하철역 띄움
+      if (this.selectedRadio === "subway") {
+        this.categoryCode = "SW8";
+        this.markerImage = subwayIcon;
+        this.searchPlaces();
+      }
+      //3. 병원 띄움
+      else if (this.selectedRadio === "hospital") {
+        this.categoryCode = "HP8";
+        this.markerImage = hospitalIcon;
+        this.searchPlaces();
+      }
+      //4. 학교 띄움
+      else if (this.selectedRadio === "school") {
+        this.categoryCode = "SC4";
+        this.markerImage = schoolIcon;
+        this.searchPlaces();
+      }
+      //5. 주차장 띄움
+      else if (this.selectedRadio === "parking") {
+        this.categoryCode = "PK6";
+        this.markerImage = schoolIcon;
+        this.searchPlaces();
+      }
+    },
+
     initMap() {
       const container = document.getElementById("map");
       const options = {
@@ -102,11 +134,16 @@ export default {
     },
 
     searchPlaces() {
+      if (this.selectedRadio === "remove") {
+        //마커들 지우는 remove 함수
+        console.log("마커들 지우는 remove 함수");
+        return;
+      }
       // 지도 이벤트 추가
       let ps = new kakao.maps.services.Places(this.map);
 
       //test
-      ps.categorySearch("SW8", this.placeSearchCB, { useMapBounds: true });
+      ps.categorySearch(this.categoryCode, this.placeSearchCB, { useMapBounds: true });
     },
     placeSearchCB(data, status) {
       if (status === kakao.maps.services.Status.OK) {
@@ -124,14 +161,20 @@ export default {
         let marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(places[i].y, places[i].x),
           title: places[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          image: new kakao.maps.MarkerImage(subwayIcon, imageSize),
+          image: new kakao.maps.MarkerImage(this.markerImage, imageSize),
         });
         marker.setMap(this.map);
-        this.subwayMarkers.push(marker);
+        this.searchMarkers.push(marker);
       }
 
       console.log(places);
-      console.log(this.subwayMarkers);
+      console.log(this.searchMarkers);
+    },
+    removeSearchMarker() {
+      for (var i = 0; i < this.searchMarkers.length; i++) {
+        this.searchMarkers[i].setMap(null);
+      }
+      this.searchMarkers = [];
     },
   },
 };
