@@ -10,10 +10,10 @@
 
           <v-text-field v-model="pw" label="PW" @keyup.enter="_login" outlined type="password"></v-text-field>
           <div class="text-right">
-            <v-btn color="primary" @click="_login"> Login </v-btn>
+            <v-btn color="primary" @click="_login"> Login</v-btn>
           </div>
           <div class="text-center">
-            <v-btn color="primary" @click="_kakaoLogin"> 카카오로 로그인 </v-btn>
+            <v-btn color="primary" @click="_kakaoLogin"> 카카오로 로그인</v-btn>
           </div>
         </v-card-text>
       </v-card>
@@ -21,7 +21,7 @@
   </v-row>
 </template>
 <script type="text/javascript">
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "UserLogin",
@@ -33,7 +33,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("userStore", ["userLogin"]),
+    ...mapActions("userStore", ["userLogin", "kakaoLogin"]),
 
     _login() {
       const user = {
@@ -41,11 +41,19 @@ export default {
         pw: this.pw,
       };
       if (this.userLogin(user)) {
-        this.$router.push({ name: "home" });
+        this.$router.push({name: "home"});
       }
     },
     _kakaoLogin() {
-      console.log("카카오로 로그인");
+      window.Kakao.Auth.login({
+        scope: 'profile_nickname, account_email',
+        success: (authObj) => {
+          console.log(authObj["access_token"]);
+          this.kakaoLogin(authObj["access_token"]).then(() => {
+            this.$router.push({name: "home"});
+          });
+        },
+      });
     },
   },
 
