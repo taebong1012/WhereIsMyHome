@@ -13,10 +13,9 @@
 
           <v-text-field v-model="pw" label="PW" @keyup.enter="_login" outlined type="password"></v-text-field>
           <div class="text-right">
+            <v-btn color="primary" @click="_searchPassword"> 비밀번호 찾기</v-btn>
+
             <v-btn color="primary" @click="_login"> Login</v-btn>
-          </div>
-          <div class="text-center">
-            <v-btn color="primary" @click="_kakaoLogin"> 카카오로 로그인</v-btn>
           </div>
         </v-card-text>
       </v-card>
@@ -46,6 +45,9 @@ export default {
       if (this.userLogin(user)) {
         this.$router.push({ name: "home" });
       }
+    },
+    _searchPassword() {
+      this.$router.push({ name: "searchpassword" });
     },
     _kakaoLogin() {
       window.Kakao.Auth.login({
