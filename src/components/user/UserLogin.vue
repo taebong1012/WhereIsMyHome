@@ -12,6 +12,9 @@
           <div class="text-right">
             <v-btn color="primary" @click="_login"> Login </v-btn>
           </div>
+          <div class="text-center">
+            <v-btn color="primary" @click="_kakaoLogin"> 카카오로 로그인 </v-btn>
+          </div>
         </v-card-text>
       </v-card>
     </v-col>
@@ -40,6 +43,9 @@ export default {
       if (this.userLogin(user)) {
         this.$router.push({ name: "home" });
       }
+    },
+    _kakaoLogin() {
+      console.log("카카오로 로그인");
     },
   },
 
