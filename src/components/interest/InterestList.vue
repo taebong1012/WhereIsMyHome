@@ -10,15 +10,14 @@
 
     <v-row>
       <v-col>
-        <v-card class="mx-auto" height="530px" elevation="2">
-          <v-list subheader style="height: 532px; overflow-y: auto">
+        <v-card class="mx-auto" height="60vh" elevation="2">
+          <v-list subheader style="height: 100%; overflow-y: auto">
             <v-list-item v-for="apt in getInterestListObserver" :key="apt.aptCode">
-              <v-list-item-content @click="_goSpecific(apt.aptCode)">
+              <v-list-item-content id="selectedArea" @click="_goSpecific(apt.aptCode)">
                 <v-list-item-title
                   v-text="apt.aptName"
                   class="text-h6 font-weight-bold primary--text pt-1"
                 ></v-list-item-title>
-                <v-divider class="my-1"></v-divider>
               </v-list-item-content>
             </v-list-item>
           </v-list>

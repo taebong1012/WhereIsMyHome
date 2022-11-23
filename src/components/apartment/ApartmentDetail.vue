@@ -5,7 +5,15 @@
         <v-btn class="ma-0" color="secondary" @click="_goBack" depressed large style="width: 100%">뒤로가기</v-btn>
       </v-col>
       <v-col cols="6" align="center" align-self="center">
-        <v-btn class="ma-0" color="interest" @click="_goInterest" depressed large style="color: white; width: 100%">
+        <v-btn
+          class="ma-0"
+          color="accent"
+          @click="_goInterest"
+          outlined
+          depressed
+          large
+          style="color: white; width: 100%"
+        >
           나의 관심 아파트
         </v-btn>
       </v-col>
@@ -13,11 +21,11 @@
 
     <v-row justify="center">
       <v-col align="center" align-self="center">
-        <v-card height="542px" width="100%" class="elevation-2">
+        <v-card height="60vh" width="100%" class="elevation-2">
           <v-row>
             <v-col class="text-h4 font-weight-bold primary--text pt-4" align="center" align-self="center">
               {{ apartmentName }}
-              <v-btn color="interest" outlined @click="_interest">
+              <v-btn color="accent" outlined @click="_interest">
                 <!-- 관심 아파트 등록 여부 정할 버튼! -->
                 <v-icon v-if="interest">mdi-heart</v-icon>
                 <v-icon v-else>mdi-heart-outline</v-icon>
@@ -25,6 +33,7 @@
             </v-col>
           </v-row>
 
+          <!-- 길찾기 -->
           <v-row justify="center" dense>
             <v-col cols="8" xl="8" align-self="center" align="center">
               <v-toolbar dense flat>
@@ -46,7 +55,7 @@
           <!-- 로드뷰 띄우기 -->
           <v-row justify="center">
             <v-col align-self="center" align="center">
-              <v-card height="20vh">
+              <v-card height="20vh" width="95%">
                 <div id="roadview" style="width: 100%; height: 22vh">로드뷰 여기임</div>
               </v-card>
             </v-col>
@@ -54,7 +63,7 @@
 
           <v-row>
             <v-col>
-              <v-simple-table fixed-header height="30vh">
+              <v-simple-table fixed-header height="26vh">
                 <template v-slot:default>
                   <thead>
                     <tr>
@@ -112,8 +121,6 @@ export default {
     ////////
     this.getAptListDetail(this.aptCode);
     console.log(this.getAptListDetailObserver);
-
-    //로드뷰
   },
   computed: {
     ...mapGetters("apartmentStore", ["getAptListDetailObserver"]),

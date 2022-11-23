@@ -1,22 +1,27 @@
 <template>
   <div>
-    <v-radio-group v-model="selectedRadio" row @change="_radioChange">
-      <v-radio label="없음" value="remove"></v-radio>
-      <v-radio label="지하철역" value="subway"></v-radio>
-      <v-radio label="병원" value="hospital"></v-radio>
-      <v-radio label="학교" value="school"></v-radio>
-      <v-radio label="주차장" value="parking"></v-radio>
-    </v-radio-group>
-    <v-card elevation="2">
-      <div id="map"></div>
-    </v-card>
+    <v-row justify="center">
+      <v-col align="center" align-self="center">
+        <v-radio-group v-model="selectedRadio" row @change="_radioChange">
+          <v-radio label="없음" value="remove"></v-radio>
+          <v-radio label="지하철역" value="subway"></v-radio>
+          <v-radio label="병원" value="hospital"></v-radio>
+          <v-radio label="학교" value="school"></v-radio>
+          <v-radio label="주차장" value="parking"></v-radio>
+        </v-radio-group>
+        <v-card elevation="2">
+          <div id="map"></div>
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
-import subwayIcon from "@/../images/subwayIcon.png";
-import hospitalIcon from "@/../images/hospitalIcon.png";
-import schoolIcon from "@/../images/schoolIcon.png";
+import subwayIcon from "@/../images/map/subwayIcon.png";
+import hospitalIcon from "@/../images/map/hospitalIcon.png";
+import schoolIcon from "@/../images/map/schoolIcon.png";
+import parkingIcon from "@/../images/map/parkingIcon.png";
 
 export default {
   name: "KakaoMap",
@@ -72,7 +77,7 @@ export default {
       //5. 주차장 띄움
       else if (this.selectedRadio === "parking") {
         this.categoryCode = "PK6";
-        this.markerImage = schoolIcon;
+        this.markerImage = parkingIcon;
         this.searchPlaces();
       }
     },
@@ -184,7 +189,7 @@ export default {
 <style scoped>
 #map {
   width: 100%;
-  height: 600px;
+  height: 60vh;
 }
 
 .button-group {

@@ -6,38 +6,6 @@
       </v-col>
     </v-row>
 
-    <!-- 리스트로 띄우기 -->
-    <!-- <v-row justify="center" class="pt-0">
-      <v-col cols="8" xl="8" align="center">
-        <v-card elevation="2">
-          <v-simple-table>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-center">글 번호</th>
-                  <th class="text-center">제목</th>
-                  <th class="text-center">작성자</th>
-                  <th class="text-center">답변 여부</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in getQnaListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
-                  <td>{{ item.uid }}</td>
-
-                  <td>
-                    {{ item.title }} <b>&nbsp;&nbsp;&nbsp;({{ item.answer_count }})</b>
-                  </td>
-                  <td>{{ item.user_name }}</td>
-                  <td v-if="item.answer_count > 0" style="color: green; font-weight: bold">답변완료</td>
-                  <td v-else></td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </v-card>
-      </v-col>
-    </v-row> -->
-
     <v-row justify="center" class="text-h6 font-weight-bold primary--text pt-4">
       <v-col cols="8">
         <v-row>
@@ -56,15 +24,9 @@
       </v-col>
     </v-row>
 
-    <v-row
-      v-for="item in getQnaListObserver"
-      :key="item.uid"
-      @click="_goDetail(item.uid)"
-      justify="center"
-      height="100px"
-    >
+    <v-row v-for="item in getQnaListObserver" :key="item.uid" justify="center" height="100px">
       <v-col cols="8">
-        <v-row>
+        <v-row id="selectedArea" @click="_goDetail(item.uid)">
           <v-col cols="1" align="center">
             {{ item.uid }}
           </v-col>
@@ -75,7 +37,7 @@
             {{ item.sdate }}
           </v-col>
           <v-col cols="3" v-if="item.answer_count > 0" style="color: #2178ff; font-weight: bold" align="center">
-            답변 완료
+            <span class="accent--text">답변 완료</span>
           </v-col>
           <v-col cols="3" v-else style="font-weight: bold" align="center"> 답변 대기 </v-col>
         </v-row>

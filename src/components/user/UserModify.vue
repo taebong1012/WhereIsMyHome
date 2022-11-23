@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-row>
-      <v-col>
+    <v-row justify="center">
+      <v-col cols="8">
         <v-card elevation="2" style="font-size: large">
           <v-row justify="center">
             <v-col cols="5" align="center" align-self="center" style="font-weight: bold">회원번호</v-col>

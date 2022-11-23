@@ -19,7 +19,7 @@
             </v-col>
 
             <v-col cols="2" align-self="center" align="center">
-              <v-btn @click="_goInterest" color="interest" x-large style="color: white">나의 관심 아파트</v-btn>
+              <v-btn @click="_goInterest" color="accent" x-large style="color: white">나의 관심 아파트</v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -63,7 +63,7 @@
 
     <v-row justify="center">
       <v-col align="right">
-        <v-btn @click="_goEdit" color="accent" large> 정보 수정 / 탈퇴 </v-btn>
+        <v-btn @click="_goEdit" color="secondary" large> 정보 수정 / 탈퇴 </v-btn>
       </v-col>
     </v-row>
   </div>

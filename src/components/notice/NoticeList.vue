@@ -6,39 +6,9 @@
       </v-col>
     </v-row>
 
-    <!-- 리스트로 띄우기 -->
-    <!-- <v-row justify="center" class="pt-0">
-      <v-col xl="8" align="center">
-        <v-card>
-          <v-simple-table elevation="2">
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-center">글 번호</th>
-                  <th class="text-center">제목</th>
-                  <th class="text-center">작성자</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in getNoticeListObserver" :key="item.uid" @click="_goDetail(item.uid)" align="center">
-                  <td>{{ item.uid }}</td>
-                  <td>{{ item.title }}</td>
-                  <td>{{ item.name }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </v-card>
-      </v-col>
-    </v-row> -->
-
-    <!-- <v-row>
-      <v-col>
-        <div>
-          <v-pagination v-model="page" :length="pageLength"> -->
-    <v-row v-for="item in getNoticeListObserver" :key="item.uid" @click="_goDetail(item.uid)" justify="center">
+    <v-row v-for="item in getNoticeListObserver" :key="item.uid" justify="center">
       <v-col cols="8">
-        <v-row>
+        <v-row id="selectedArea" @click="_goDetail(item.uid)">
           <v-col>
             <span class="text-h6 font-weight-bold primary--text pt-4">{{ item.title }}</span>
             <br />

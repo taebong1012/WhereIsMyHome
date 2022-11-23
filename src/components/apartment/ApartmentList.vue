@@ -5,7 +5,15 @@
         <v-btn class="ma-0" disabled depressed large style="width: 100%"> 뒤로가기</v-btn>
       </v-col>
       <v-col cols="6" align="center" align-self="center">
-        <v-btn class="ma-0" color="interest" @click="_goInterest" depressed large style="color: white; width: 100%">
+        <v-btn
+          class="ma-0"
+          color="accent"
+          @click="_goInterest"
+          outlined
+          depressed
+          large
+          style="color: white; width: 100%"
+        >
           나의 관심 아파트
         </v-btn>
       </v-col>
@@ -14,9 +22,9 @@
     <v-row>
       <v-col>
         <v-card class="mx-auto">
-          <v-list subheader style="height: 532px; overflow-y: auto">
+          <v-list subheader style="height: 60vh; overflow-y: auto">
             <v-list-item v-for="apt in getAptListObserver" :key="apt.no">
-              <v-list-item-content @click="_goDetail(apt.apartmentName, apt.aptCode)">
+              <v-list-item-content id="selectedArea" @click="_goDetail(apt.apartmentName, apt.aptCode)">
                 <v-list-item-title
                   v-text="apt.apartmentName"
                   class="text-h6 font-weight-bold primary--text pt-1"

@@ -6,17 +6,52 @@
           <div class="text-h4">Login</div>
         </v-card-title>
         <v-card-text>
-          <div class="text-center">
-            <v-btn color="yellow" @click="_kakaoLogin"> 카카오로 로그인 </v-btn>
-          </div>
-          <v-text-field v-model="id" label="ID" @keyup.enter="_login" outlined type="text"></v-text-field>
+          <v-row justify="center">
+            <v-col cols="2" align-self="center" align="center">
+              <v-img
+                id="loginBtn"
+                :aspect-ratio="16 / 9"
+                height="50px"
+                width="50px"
+                src="@/../images/login/naverLogin.png"
+                @click="_nothingLogin"
+              ></v-img>
+            </v-col>
+            <v-col cols="2" align-self="center" align="center">
+              <v-img
+                id="loginBtn"
+                :aspect-ratio="16 / 9"
+                height="50px"
+                width="50px"
+                src="@/../images/login/kakaoLogin.png"
+                @click="_kakaoLogin"
+              ></v-img>
+            </v-col>
+            <v-col cols="2" align-self="center" align="center">
+              <v-img
+                id="loginBtn"
+                :aspect-ratio="16 / 9"
+                height="50px"
+                width="50px"
+                src="@/../images/login/facebookLogin.png"
+                @click="_nothingLogin"
+              ></v-img>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <v-text-field v-model="id" label="ID" @keyup.enter="_login" outlined type="text"></v-text-field>
+            </v-col>
+          </v-row>
 
           <v-text-field v-model="pw" label="PW" @keyup.enter="_login" outlined type="password"></v-text-field>
-          <div class="text-right">
-            <v-btn color="primary" @click="_searchPassword"> 비밀번호 찾기</v-btn>
 
-            <v-btn color="primary" @click="_login"> Login</v-btn>
-          </div>
+          <v-row justify="center">
+            <v-col cols="3"> <v-btn color="accent" @click="_searchPassword"> 비밀번호 찾기 </v-btn> </v-col>
+            <v-col cols="1"></v-col>
+            <v-col cols="3"> <v-btn color="secondary" @click="_login" style="color: white"> Login </v-btn> </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
     </v-col>
@@ -60,6 +95,9 @@ export default {
         },
       });
     },
+    _nothingLogin() {
+      alert("준비 중인 서비스 입니다.");
+    },
   },
 
   computed: {
@@ -67,3 +105,4 @@ export default {
   },
 };
 </script>
+<style></style>

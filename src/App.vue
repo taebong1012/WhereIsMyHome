@@ -6,6 +6,10 @@
       <v-container class="mt-16">
         <router-view></router-view>
       </v-container>
+
+      <v-row>
+        <v-col> &nbsp; </v-col>
+      </v-row>
     </div>
 
     <Footer id="footer"></Footer>
@@ -32,5 +36,12 @@ export default {
 #footer {
   position: relative;
   transform: translateY(-100%);
+}
+#selectedArea:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+#loginBtn:hover {
+  cursor: pointer;
 }
 </style>

@@ -11,9 +11,11 @@
           <v-text-field v-model="user.name" label="NAME" outlined type="text"></v-text-field>
           <v-text-field v-model="user.email" label="EMAIL" outlined type="text"></v-text-field>
 
-          <div class="text-right">
-            <v-btn color="primary" @click="_regist"> Regist </v-btn>
-          </div>
+          <v-row justify="center">
+            <v-col align="center" align-self="center">
+              <v-btn color="accent" @click="_regist"> Regist </v-btn>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
     </v-col>
