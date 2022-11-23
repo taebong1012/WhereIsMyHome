@@ -97,6 +97,10 @@ export default {
         to: "/apartment",
       },
       {
+        title: "NEWS",
+        to: "/news",
+      },
+      {
         title: "QnA",
         to: "/qna",
       },
@@ -116,7 +120,9 @@ export default {
   methods: {
     ...mapActions("userStore", ["userLogout"]),
     _homeClick() {
-      this.$router.go(this.$router.currentRoute);
+      if (this.$route.name !== "home") {
+        this.$router.push({ name: "home" });
+      }
     },
     _logout() {
       this.userLogout();

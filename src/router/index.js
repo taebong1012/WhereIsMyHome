@@ -192,6 +192,12 @@ const routes = [
       // },
     ],
   },
+  {
+    path: "/news",
+    name: "news",
+    // beforeEnter: authUser,
+    component: () => import("@/views/AppNews.vue"),
+  },
 ];
 
 const router = new VueRouter({
