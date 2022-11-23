@@ -56,7 +56,7 @@
               REGIST
             </v-btn>
 
-            <v-btn v-else color="accent" target="_black" :to="{ name: 'mypage' }" class="ml-3 text-capitalize">
+            <v-btn v-else color="white" target="_black" :to="{ name: 'mypage' }" class="ml-3 text-capitalize">
               <v-icon left>mdi-account</v-icon>
               MyPage
             </v-btn>

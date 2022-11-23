@@ -60,7 +60,7 @@
         <div class="text-center mt-6">
           Copyright &copy;
           <a class="white--text" href="https://heroui.net" rel="noopener noreferrer" target="_blank">HreoUI</a>
-          {{ new Date().getFullYear() }}. All rights reserved.
+          {{ new Date().getFullYear() }}. All rights reserved. Designed by toss.
         </div>
       </v-container>
     </v-card>

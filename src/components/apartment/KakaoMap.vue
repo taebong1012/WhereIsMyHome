@@ -185,6 +185,7 @@ export default {
 #map {
   width: 100%;
   height: 600px;
+  z-index: 10;
 }
 
 .button-group {
