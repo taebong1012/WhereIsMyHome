@@ -29,7 +29,7 @@
           <v-col class="d-flex align-start" cols="2">
             <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" @click.stop="drawer = !drawer" />
             <v-toolbar-title class="font-weight-bold text-h6 primary--text" style="cursor: pointer" @click="_homeClick">
-              <v-icon color="primary" large>mdi-feather</v-icon>
+              <v-icon color="primary" large>mdi-camera</v-icon>
               <span class="accent--text">H</span>
               ouse
             </v-toolbar-title>

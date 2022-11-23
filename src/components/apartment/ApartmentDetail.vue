@@ -25,13 +25,29 @@
             </v-col>
           </v-row>
 
-          <v-divider class="my-3"></v-divider>
+          <v-row justify="center" dense>
+            <v-col cols="8" xl="8" align-self="center" align="center">
+              <v-toolbar dense flat>
+                <v-text-field
+                  @keyup.enter="findRoute"
+                  v-model="word"
+                  type="text"
+                  hide-details
+                  prepend-icon="mdi-magnify"
+                  single-line
+                  label="해당 아파트에서부터 입력한 곳까지의 길찾기"
+                ></v-text-field>
+              </v-toolbar>
+            </v-col>
+          </v-row>
+
+          <!-- <v-divider class="my-3"></v-divider> -->
 
           <!-- 로드뷰 띄우기 -->
           <v-row justify="center">
             <v-col align-self="center" align="center">
               <v-card height="20vh">
-                <div id="roadview" style="width: 100%; height: 20vh">로드뷰 여기임</div>
+                <div id="roadview" style="width: 100%; height: 22vh">로드뷰 여기임</div>
               </v-card>
             </v-col>
           </v-row>
@@ -76,6 +92,7 @@ export default {
       interest: false,
       apartmentName: "",
       aptCode: 0,
+      word: "",
     };
   },
 
@@ -102,6 +119,7 @@ export default {
     ...mapGetters("apartmentStore", ["getAptListDetailObserver"]),
   },
   mounted() {
+    console.log("가져온 아파트");
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
@@ -117,13 +135,49 @@ export default {
       var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
       var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
 
-      var position = new kakao.maps.LatLng(33.450701, 126.570667);
+      console.log(this.getAptListDetailObserver[0].lat, this.getAptListDetailObserver[0].lng);
+      var position = new kakao.maps.LatLng(this.getAptListDetailObserver[0].lat, this.getAptListDetailObserver[0].lng);
 
       // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
-      roadviewClient.getNearestPanoId(position, 50, function (panoId) {
+      roadviewClient.getNearestPanoId(position, 100, function (panoId) {
         console.log("panoId", panoId);
         roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
       });
+    },
+
+    findRoute() {
+      var ps = new kakao.maps.services.Places();
+      ps.keywordSearch(this.word, this.placesSearchCB);
+    },
+
+    placesSearchCB(data, status, pagination) {
+      console.log("키워드: " + this.word + "로 검색");
+      if (status === kakao.maps.services.Status.OK) {
+        //data안에
+        //장소이름: place_name
+        //x, y: 경도? 위도?
+        console.log(data[0]);
+
+        let link =
+          "https://map.kakao.com/link/to/" +
+          data[0].place_name +
+          "," +
+          data[0].y +
+          "," +
+          data[0].x +
+          "/from/" +
+          this.getAptListDetailObserver[0].apartmentName +
+          "," +
+          this.getAptListDetailObserver[0].lat +
+          "," +
+          this.getAptListDetailObserver[0].lng;
+
+        // console.log(link);
+        console.log("여기 몇번?");
+        window.open(link);
+      } else {
+        console.log("카카오 맵 오류");
+      }
     },
 
     _goInterest() {
