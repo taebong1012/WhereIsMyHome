@@ -45,7 +45,7 @@ export default {
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=754556683f16e08f943f95db414b90bc&libraries=services";
       document.head.appendChild(script);
       console.log("스크립트 설정");
     }

@@ -105,7 +105,7 @@ export default {
     console.log("가져온 아파트");
     const script = document.createElement("script");
     script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=754556683f16e08f943f95db414b90bc&libraries=services";
     this.displayRoadView();
   },
   updated() {
