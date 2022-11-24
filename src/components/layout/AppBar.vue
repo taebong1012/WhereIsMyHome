@@ -29,9 +29,8 @@
           <v-col class="d-flex align-start" cols="2">
             <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" @click.stop="drawer = !drawer" />
             <v-toolbar-title class="font-weight-bold text-h6 primary--text" style="cursor: pointer" @click="_homeClick">
-              <v-icon color="primary" large>mdi-camera</v-icon>
-              <span class="accent--text">H</span>
-              ouse
+              <v-img color="primary" large src="@/../images/logo.png" width="90px"></v-img>
+              <!-- <span class="accent--text">내살</span> -->
             </v-toolbar-title>
           </v-col>
 
@@ -93,13 +92,14 @@ export default {
         to: "/",
       },
       {
-        title: "APT",
-        to: "/apartment",
-      },
-      {
         title: "NEWS",
         to: "/news",
       },
+      {
+        title: "APT",
+        to: "/apartment",
+      },
+
       {
         title: "QnA",
         to: "/qna",

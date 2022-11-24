@@ -25,7 +25,7 @@
 
           <v-row>
             <v-col>
-              <div style="font-size: 20px">{{ getNoticeObjectObserver.content }}</div>
+              <div style="font-size: 20px" v-html="getNoticeObjectObserver.content"></div>
             </v-col>
           </v-row>
 

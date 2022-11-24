@@ -43,7 +43,7 @@
             @click="_goUrl(newslist[4].url.replace(/&quot;/gi, ''))"
           ></v-card-title>
 
-          <v-card-text id="urltext" align="right">더 많은 최신 뉴스 보러가기</v-card-text>
+          <v-card-text id="urltext" align="right" @click="_goNews">더 많은 최신 뉴스 보러가기</v-card-text>
         </v-card>
       </v-col>
       <v-col cols="6">

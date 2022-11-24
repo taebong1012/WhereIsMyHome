@@ -13,7 +13,7 @@
             <v-list color="transparent" flat>
               <v-subheader class="text-h6">안태현</v-subheader>
               <v-list-item-group color="primary">
-                <v-list-item v-for="(item, i) in heroui" :key="i" :href="item.href" dense target="_black">
+                <v-list-item v-for="(item, i) in heroui" :key="i" dense>
                   <v-list-item-content>
                     <v-list-item-title class="text-body-1" v-text="item.text"></v-list-item-title>
                   </v-list-item-content>
@@ -26,7 +26,7 @@
             <v-list color="transparent" flat>
               <v-subheader class="text-h6">최진우</v-subheader>
               <v-list-item-group color="primary">
-                <v-list-item v-for="(item, i) in shock" :key="i" :href="item.href" dense target="_black">
+                <v-list-item v-for="(item, i) in shock" :key="i" dense>
                   <v-list-item-content>
                     <v-list-item-title class="text-body-1" v-text="item.text"></v-list-item-title>
                   </v-list-item-content>
