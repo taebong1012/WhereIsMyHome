@@ -108,10 +108,6 @@ export default {
         title: "NOTICE",
         to: "/notice",
       },
-      {
-        title: "DEV",
-        to: "/developer",
-      },
     ],
   }),
   computed: {

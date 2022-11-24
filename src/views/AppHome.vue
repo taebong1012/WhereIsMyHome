@@ -5,50 +5,60 @@
       <v-row>
         <v-col>
           <v-card>
-            <v-img
-              :aspect-ratio="16 / 9"
-              dark
-              gradient="to top, rgba(25,32,72,.7), rgba(25,32,72,.0)"
-              height="500px"
-              src="https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg"
-            >
-              <v-card-text class="fill-height d-flex align-end">
-                <v-row class="flex-column">
-                  <v-col>
-                    <v-btn color="accent" to="category">Travel</v-btn>
-                  </v-col>
-                  <v-col cols="12" lg="8" md="10" xl="7">
-                    <h2 class="text-h3 py-3" style="line-height: 1.2">
-                      Great Travel Blogs From Around The World To Inspire You
-                    </h2>
-                  </v-col>
-                  <v-col class="d-flex align-center">
-                    <v-avatar class="elevation-4" color="accent">
-                      <v-icon large>mdi-feather</v-icon>
-                    </v-avatar>
-
-                    <div class="text-h6 pl-2">Yan Lee · 22 July 2019</div>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-            </v-img>
+            <!-- dark
+              gradient="to top, rgba(25,32,72,.7), rgba(25,32,72,.0)" -->
+            <v-img :aspect-ratio="16 / 9" height="500px" src="@/../images/homeMain.png"> </v-img>
           </v-card>
         </v-col>
       </v-row>
     </div>
     <v-row justify="center">
-      <v-col cols="6">
-        <v-card height="500px">여기는 뉴스 제목들 띄울거임</v-card>
+      <v-col cols="6" align-self="center">
+        <v-card height="500px" class="justify-center" color="#FDF9F3">
+          <v-card-title><h2>부동산 관련 최신 뉴스</h2></v-card-title>
+          <v-card-title
+            v-html="newslist[0].title.replace(/&quot;/gi, '')"
+            id="urltext"
+            @click="_goUrl(newslist[0].url.replace(/&quot;/gi, ''))"
+          >
+          </v-card-title>
+          <v-card-title
+            v-html="newslist[1].title.replace(/&quot;/gi, '')"
+            id="urltext"
+            @click="_goUrl(newslist[1].url.replace(/&quot;/gi, ''))"
+          ></v-card-title>
+          <v-card-title
+            v-html="newslist[2].title.replace(/&quot;/gi, '')"
+            id="urltext"
+            @click="_goUrl(newslist[2].url.replace(/&quot;/gi, ''))"
+          ></v-card-title>
+          <v-card-title
+            v-html="newslist[3].title.replace(/&quot;/gi, '')"
+            id="urltext"
+            @click="_goUrl(newslist[3].url.replace(/&quot;/gi, ''))"
+          ></v-card-title>
+          <v-card-title
+            v-html="newslist[4].title.replace(/&quot;/gi, '')"
+            id="urltext"
+            @click="_goUrl(newslist[4].url.replace(/&quot;/gi, ''))"
+          ></v-card-title>
+
+          <v-card-text id="urltext" align="right">더 많은 최신 뉴스 보러가기</v-card-text>
+        </v-card>
       </v-col>
       <v-col cols="6">
         <v-row>
           <v-col>
-            <v-card height="235px" @click="_goQnA">여기는 QnA 바로가기</v-card>
+            <v-card @click="_goQnA">
+              <v-img :aspect-ratio="16 / 9" height="235px" src="@/../images/qna.png"> </v-img>
+            </v-card>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-card height="235px" @click="_goInterest">여기는 관심아파트로 갈거임</v-card>
+            <v-card @click="_goInterest">
+              <v-img :aspect-ratio="16 / 9" height="235px" src="@/../images/interest.png"> </v-img>
+            </v-card>
           </v-col>
         </v-row>
       </v-col>
@@ -57,10 +67,14 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "Home",
   components: {},
   methods: {
+    ...mapActions("newsStore", ["getNewsList"]),
+
     _goQnA() {
       this.$router.push({ name: "qna" });
     },
@@ -70,6 +84,25 @@ export default {
     _goNews() {
       this.$router.push({ name: "news" });
     },
+    _goUrl(url) {
+      console.log(url);
+      window.open(url);
+    },
+  },
+  computed: {
+    // ...mapGetters[("newsStore", ["getNewsListObserver"])],
+    ...mapState("newsStore", ["newslist"]),
+  },
+  async created() {
+    await this.getNewsList();
   },
 };
 </script>
+
+<style>
+#urltext:hover {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+</style>

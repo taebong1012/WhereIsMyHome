@@ -12,6 +12,7 @@ export default new Vuetify({
       light: {
         // accent: "#2178ff", //파랑
         accent: "#FF5E00", //주황
+        // accent: "#AAB59E", //초록
         primary: "#000",
         secondary: "#818383", //회색
         warning: "#DB0000", //삭제 같은 중요한 버튼
